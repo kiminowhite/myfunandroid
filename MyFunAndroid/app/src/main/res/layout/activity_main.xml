@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:knw="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashActivity"
+    android:orientation="vertical">
+
+    <FrameLayout
+
+        android:id="@+id/main_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/main_bottom_layout">
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/main_bottom_layout"
+        android:background="@drawable/border_gray"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+       <com.knw.myfunandroid.MainPageBottomItemView
+           android:id="@+id/home"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:layout_height="match_parent"
+           knw:item_text_name="首页"
+           knw:item_icon_default="@mipmap/shouye"
+           knw:text_color_defalut="@color/text_grey"
+           knw:item_icon_press="@mipmap/shouyei_press"
+           knw:text_color_press ="@color/text_lightblue"
+           android:background="@drawable/bg_main_page_bottom_item"
+           android:gravity="center"
+           knw:text_size="4dp">
+       </com.knw.myfunandroid.MainPageBottomItemView>
+        <com.knw.myfunandroid.MainPageBottomItemView
+            android:id="@+id/project"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            knw:item_text_name="项目"
+            knw:item_icon_default="@mipmap/xiangmu"
+            knw:text_color_defalut="@color/text_grey"
+            knw:item_icon_press="@mipmap/xiangmu_press"
+            knw:text_color_press ="@color/text_lightblue"
+            android:background="@drawable/bg_main_page_bottom_item"
+            knw:text_size="4dp">
+        </com.knw.myfunandroid.MainPageBottomItemView>
+
+        <com.knw.myfunandroid.MainPageBottomItemView
+            android:id="@+id/official_accounts"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            knw:item_text_name="公众号"
+            knw:item_icon_default="@mipmap/gongzhonghao"
+            knw:text_color_defalut="@color/text_grey"
+            knw:item_icon_press="@mipmap/gongzhonghao_press"
+            android:background="@drawable/bg_main_page_bottom_item"
+            knw:text_color_press ="@color/text_lightblue"
+            knw:text_size="4dp">
+        </com.knw.myfunandroid.MainPageBottomItemView>
+        <com.knw.myfunandroid.MainPageBottomItemView
+            android:id="@+id/system"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            knw:item_text_name="体系"
+            knw:item_icon_default="@mipmap/tixi"
+            knw:text_color_defalut="@color/text_grey"
+            knw:item_icon_press="@mipmap/tixi_press"
+            android:background="@drawable/bg_main_page_bottom_item"
+            knw:text_color_press ="@color/text_lightblue"
+            knw:text_size="4dp">
+        </com.knw.myfunandroid.MainPageBottomItemView>
+        <com.knw.myfunandroid.MainPageBottomItemView
+            android:id="@+id/profile"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            knw:item_text_name="我的"
+            knw:item_icon_default="@mipmap/wode"
+            knw:text_color_defalut="@color/text_grey"
+            knw:item_icon_press="@mipmap/wode_press"
+            android:background="@drawable/bg_main_page_bottom_item"
+            knw:text_color_press ="@color/text_lightblue"
+            knw:text_size="4dp">
+        </com.knw.myfunandroid.MainPageBottomItemView>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

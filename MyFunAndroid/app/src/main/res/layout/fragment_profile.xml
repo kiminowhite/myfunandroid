@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/profile_not_login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:visibility="visible">
+        <TextView
+            android:background="@drawable/rounded_bottom_corner"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="未登录"></TextView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@drawable/rounded_bottom_corner"
+        android:id="@+id/profile_login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:visibility="gone">
+        <TextView
+            android:background="@color/text_lightblue"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="已登录"></TextView>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="プロフィール"
+        android:gravity="center">
+
+    </TextView>
+
+
+</RelativeLayout>

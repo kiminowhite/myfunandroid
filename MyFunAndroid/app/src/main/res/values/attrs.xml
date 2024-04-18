@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MainPageBottomItemView">
+        <attr name="item_text_name" format="string" />
+        <attr name="item_icon_default" format="reference" />
+        <attr name="item_icon_press" format="reference" />
+        <attr name="text_color_defalut" format="color" />
+        <attr name="text_color_press" format="color" />
+        <attr name="text_size" format="dimension" />
+    </declare-styleable>
+</resources>
