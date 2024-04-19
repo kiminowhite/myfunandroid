@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
-                replaceFragment(ProfileFragment())
+                replaceFragment(ProfileFragment(),"ProfileFragment")
 
             }
         })
@@ -99,10 +99,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment,tag:String) {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.main_fragment_container, fragment)
+        transaction.replace(R.id.main_fragment_container, fragment,tag)
         transaction.commit()
     }
 }

@@ -1,12 +1,15 @@
 package com.knw.myfunandroid
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.knw.myfunandroid.utils.StatusBarUtil
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var splashSkip: TextView
@@ -15,8 +18,11 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var runnable:Runnable
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+
 
         splashSkip = findViewById(R.id.splash_skip)
         splashSkip.setOnClickListener {
@@ -35,6 +41,10 @@ class SplashActivity : AppCompatActivity() {
         // 开始倒计时
         startCountdown()
     }
+
+    /*
+    定时任务实现跳转
+     */
 
     private fun startCountdown() {
         // 定义倒计时任务
