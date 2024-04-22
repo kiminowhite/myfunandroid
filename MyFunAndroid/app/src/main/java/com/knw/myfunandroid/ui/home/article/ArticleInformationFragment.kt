@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -103,7 +104,9 @@ class ArticleInformationFragment :Fragment() {
         imgArticleInfoMore = view.findViewById<ImageView>(R.id.article_info_more)
 
         webViewArticleInfoDetails = view.findViewById<WebView>(R.id.article_info_details_webview)
+        webViewArticleInfoDetails.settings.domStorageEnabled = true
         webViewArticleInfoDetails.settings.javaScriptEnabled = true
+        webViewArticleInfoDetails.settings.setBlockNetworkImage(false)
         article?.link?.let { webViewArticleInfoDetails.loadUrl(it) }
 
         imgArticleInfoDetailsBack = view.findViewById<ImageView>(R.id.article_info_details_back)

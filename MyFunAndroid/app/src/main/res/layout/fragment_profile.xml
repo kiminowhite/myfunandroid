@@ -134,7 +134,7 @@
 
         android:padding="10dp">
         <ImageView
-
+            android:layout_marginTop="10dp"
             android:id="@+id/shezhi"
             android:paddingLeft="10dp"
             android:layout_width="wrap_content"
@@ -170,7 +170,9 @@
 
         android:padding="10dp">
         <ImageView
+
             android:id="@+id/jianchagengxin"
+            android:layout_marginTop="10dp"
             android:paddingLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
