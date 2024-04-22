@@ -131,10 +131,31 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun replaceFragment(fragment: Fragment,tag:String) {
+    private fun replaceFragment(fragment: Fragment, tag: String) {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.main_fragment_container, fragment,tag)
+
+        // 遍历当前 FragmentManager 中所有的 Fragment
+        var existingFragment: Fragment? = null
+        for (fragment in fragmentManager.fragments) {
+            if (fragment.tag == tag) {
+                // 如果已存在相同 tag 的 Fragment，则直接显示它
+                existingFragment = fragment
+                transaction.show(existingFragment)
+            } else {
+                // 否则隐藏其他的 Fragment
+                transaction.hide(fragment)
+            }
+        }
+
+        if (existingFragment == null) {
+            // 如果不存在相同 tag 的 Fragment，则添加新的 Fragment
+            transaction.add(R.id.main_fragment_container, fragment, tag)
+        }
+
+        // 提交事务
         transaction.commit()
     }
+
+
 }

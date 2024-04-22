@@ -12,12 +12,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.knw.myfunandroid.R
-import com.knw.myfunandroid.logic.Repository
-import kotlin.concurrent.thread
+import com.knw.myfunandroid.logic.utils.NetworkUtils
+import com.knw.myfunandroid.ui.home.article.ArticleAdpter
+import com.knw.myfunandroid.ui.home.article.ArticleViewModel
 
 class HomeFragment:Fragment() {
 
     val viewModel by lazy { ViewModelProvider(this).get(ArticleViewModel::class.java) }
+    private  var currentPage :Int =0
     private lateinit var  adapter: ArticleAdpter
     private lateinit var articleRecyclerView: RecyclerView
     override fun onCreateView(
@@ -27,6 +29,25 @@ class HomeFragment:Fragment() {
     ): View? {
        val view :View = inflater.inflate(R.layout.fragment_home,container,false)
         articleRecyclerView= view.findViewById(R.id.article_recycleview)
+
+        articleRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val layoutManager = recyclerView.layoutManager
+                if (layoutManager != null && layoutManager is LinearLayoutManager) {
+                    val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+                    val totalItemCount = layoutManager.itemCount
+
+                    // 如果最后一个可见的 item 的位置等于总 item 数量减去 1，表示已经滚动到了最后一个 item
+                    if (lastVisibleItemPosition == totalItemCount - 1) {
+                        // 执行加载新数据的操作
+                        viewModel.getArticles(currentPage++) // 这里调用 ViewModel 中加载新数据的方法
+                    }
+                }
+            }
+        })
+
         return  view
     }
 
@@ -38,12 +59,14 @@ class HomeFragment:Fragment() {
         adapter= ArticleAdpter(this,viewModel.articleList)
         articleRecyclerView.adapter=adapter
 
-        viewModel.getArticles(0)
+        //获取第一页
+        viewModel.getArticles(currentPage)
+        Log.d("test",NetworkUtils.isNetworkAvailable(requireContext()).toString())
+
         viewModel.articleLiveData.observe(viewLifecycleOwner,Observer{ result ->
             val articles =result.getOrNull()
             if(articles!=null)
             {
-                viewModel.articleList.clear()
                 viewModel.articleList.addAll(articles)
                 adapter.notifyDataSetChanged()
             }

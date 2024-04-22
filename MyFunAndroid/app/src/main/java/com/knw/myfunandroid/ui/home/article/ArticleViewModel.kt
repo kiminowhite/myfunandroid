@@ -1,4 +1,4 @@
-package com.knw.myfunandroid.ui.home
+package com.knw.myfunandroid.ui.home.article
 
 
 import androidx.lifecycle.MutableLiveData

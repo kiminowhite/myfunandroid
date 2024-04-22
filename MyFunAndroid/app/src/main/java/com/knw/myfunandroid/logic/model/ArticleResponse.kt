@@ -1,6 +1,7 @@
 package com.knw.myfunandroid.logic.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
 data class ArticleResponse(
@@ -55,4 +56,4 @@ data class Article(
     @SerializedName("userId") val userId: Int,
     @SerializedName("visible") val visible: Int,
     @SerializedName("zan") val zan: Int
-)
+): Serializable

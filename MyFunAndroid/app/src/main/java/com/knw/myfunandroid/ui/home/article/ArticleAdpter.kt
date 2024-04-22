@@ -1,7 +1,8 @@
-package com.knw.myfunandroid.ui.home
+package com.knw.myfunandroid.ui.home.article
 
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -35,6 +36,28 @@ class ArticleAdpter(private val fragment: Fragment, private val articleList: Lis
         holder.niceDate.text=article.niceDate
         holder.title.text=article.title
         holder.superChapterName.text=article.superChapterName
+        holder.itemView.setOnClickListener({
+            Log.d("test",article.link.toString())
+
+
+            // 创建要跳转的 Fragment 实例，并将数据传递给它
+            val articleInfoFragment = ArticleInformationFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("article", article)
+                }
+            }
+
+            // 跳转到 Fragment
+            fragment.requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.slide_in_right, 0,
+                    R.anim.slide_in_left, R.anim.slide_out_left
+                )
+                .add(android.R.id.content, articleInfoFragment, "ArticleInformationFragment")
+                .addToBackStack(null)
+                .commit()
+
+        })
 
     }
 
