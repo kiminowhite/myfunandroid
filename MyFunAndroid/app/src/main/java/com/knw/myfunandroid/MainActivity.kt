@@ -1,35 +1,63 @@
 package com.knw.myfunandroid
 
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.knw.myfunandroid.ui.customview.MainPageBottomItemView
+import com.knw.myfunandroid.ui.home.HomeFragment
+import com.knw.myfunandroid.ui.official.OfficialFragment
+import com.knw.myfunandroid.ui.profile.ProfileFragment
+import com.knw.myfunandroid.ui.project.ProjectFragment
+import com.knw.myfunandroid.ui.system.SystemFragment
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var  home:MainPageBottomItemView
-    private lateinit var  project:MainPageBottomItemView
-    private lateinit var  official:MainPageBottomItemView
-    private lateinit var  system:MainPageBottomItemView
-    private lateinit var  profile:MainPageBottomItemView
+    private lateinit var  home: MainPageBottomItemView
+    private lateinit var  project: MainPageBottomItemView
+    private lateinit var  official: MainPageBottomItemView
+    private lateinit var  system: MainPageBottomItemView
+    private lateinit var  profile: MainPageBottomItemView
     private lateinit var  mainFragmentContainer :FrameLayout
 
     private var selectedView: MainPageBottomItemView? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
+       val layout:RelativeLayout= findViewById(R.id.main)
+
+        ViewCompat.setOnApplyWindowInsetsListener(layout) { v, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Apply the insets as a margin to the view. This solution sets
+            // only the bottom, left, and right dimensions, but you can apply whichever
+            // insets are appropriate to your layout. You can also update the view padding
+            // if that's more appropriate.
+          val params =  v.layoutParams as FrameLayout.LayoutParams
+             params.bottomMargin =insets.bottom
+
+            // Return CONSUMED if you don't want want the window insets to keep passing
+            // down to descendant views.
+            WindowInsetsCompat.CONSUMED
+        }
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.statusBarColor = Color.TRANSPARENT
+
+
 
         initView()
         initClickListener()
 
+        //默认进入首页
         home.performClick()
 
 
@@ -39,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         home.setOnItemClickListener(object : MainPageBottomItemView.OnItemClickListener {
             override fun onItemClick(v: View, mItemIconPressResId: Int, mTextColorPress: Int) {
          onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
+                replaceFragment(HomeFragment(),"HomeFragment")
 
             }
         })
@@ -46,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClick(v: View, mItemIconPressResId: Int, mTextColorPress: Int) {
 
                 onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
+                replaceFragment(ProjectFragment(),"ProjectFragment")
 
             }
         })
@@ -53,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClick(v: View, mItemIconPressResId: Int, mTextColorPress: Int) {
 
                 onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
+                replaceFragment(OfficialFragment(),"OfficialFragment")
 
             }
         })
@@ -60,6 +91,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClick(v: View, mItemIconPressResId: Int, mTextColorPress: Int) {
 
                 onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
+                replaceFragment(SystemFragment(),"SystemFragment")
 
             }
         })

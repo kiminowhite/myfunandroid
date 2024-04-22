@@ -3,12 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+        android:id="@+id/homepage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:text="ホームページ"
         android:gravity="center">
-
     </TextView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/article_recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/homepage">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </RelativeLayout>

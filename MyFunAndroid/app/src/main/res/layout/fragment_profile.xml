@@ -111,7 +111,8 @@
             android:gravity="center"
             android:textSize="20dp"
 
-            android:text="收藏">
+            android:text="收藏"
+            android:textColor="@color/black">
         </TextView>
         <ImageView
             android:id="@+id/to_favorites_page"
@@ -144,7 +145,8 @@
             android:gravity="center"
             android:textSize="20dp"
 
-            android:text="设置">
+            android:text="设置"
+            android:textColor="@color/black">
 
         </TextView>
         <ImageView
@@ -178,7 +180,8 @@
             android:gravity="center"
             android:textSize="20dp"
 
-            android:text="检查更新">
+            android:text="检查更新"
+            android:textColor="@color/black">
         </TextView>
         <ImageView
             android:id="@+id/to_update_page"

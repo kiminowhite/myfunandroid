@@ -9,7 +9,8 @@ import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.knw.myfunandroid.utils.StatusBarUtil
+import androidx.core.view.WindowCompat
+import com.knw.myfunandroid.logic.utils.StatusBarUtil
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var splashSkip: TextView
@@ -18,7 +19,11 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var runnable:Runnable
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
+
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.statusBarColor = Color.TRANSPARENT
+        window.navigationBarColor = Color.TRANSPARENT
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 

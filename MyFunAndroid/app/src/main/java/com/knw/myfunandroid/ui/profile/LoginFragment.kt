@@ -1,8 +1,6 @@
-package com.knw.myfunandroid
+package com.knw.myfunandroid.ui.profile
 
-import android.app.Dialog
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Im
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +10,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.knw.myfunandroid.App.Companion.isLogin
 import com.knw.myfunandroid.App.Companion.loginUser
+import com.knw.myfunandroid.R
+import com.knw.myfunandroid.logic.model.User
 
 class LoginFragment : Fragment() {
     private var passwordIsHiden = true
@@ -60,13 +58,13 @@ class LoginFragment : Fragment() {
             //isLogin=false
             //成功
             isLogin=true
-            loginUser= User("aiges","123456",R.mipmap.aiges,"アイギス",114514,emptyList())
+            loginUser= User("aiges","123456", R.mipmap.aiges,"アイギス",114514,emptyList())
 
             if(isLogin==false)
             {
                 //失败了清空内容
                 editUsername.setText("")
-                editPassword.setText("")
+
                 Toast.makeText(context,"账号或密码错误",Toast.LENGTH_SHORT).show()
 
             }else{
@@ -87,7 +85,11 @@ class LoginFragment : Fragment() {
         buttonSignUp.setOnClickListener({
             requireActivity().supportFragmentManager
                 .beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_right, 0, R.anim.slide_in_left, R.anim.slide_out_left)
+                .setCustomAnimations(
+                    R.anim.slide_in_right, 0,
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
                 .add(android.R.id.content, SignUpFragment(), "SignUpFragment")
                 .addToBackStack(null)
                 .commit()

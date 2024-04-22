@@ -1,4 +1,4 @@
-package com.knw.myfunandroid
+package com.knw.myfunandroid.logic.model
 
 data class User(
     var username: String,
@@ -7,4 +7,5 @@ data class User(
     var fullName: String,
     var score: Int,
     var favorites: List<Int>
+
 )

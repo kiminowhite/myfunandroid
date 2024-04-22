@@ -1,21 +1,17 @@
-package com.knw.myfunandroid
+package com.knw.myfunandroid.ui.profile
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.fragment.app.Fragment
 import com.knw.myfunandroid.App.Companion.isLogin
 import com.knw.myfunandroid.App.Companion.loginUser
-import com.knw.myfunandroid.utils.StatusBarUtil
+import com.knw.myfunandroid.R
 import de.hdodenhof.circleimageview.CircleImageView
 
 
@@ -33,7 +29,6 @@ class ProfileFragment :Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view:View =  inflater.inflate(R.layout.fragment_profile, container, false)
-        StatusBarUtil.setStatusBarColor(requireActivity(),R.color.text_lightblue)
         initView(view)
         initListner()
 
@@ -48,7 +43,7 @@ class ProfileFragment :Fragment() {
             requireActivity().supportFragmentManager.
             beginTransaction().
             setCustomAnimations(R.anim.slide_in_up, 0, 0, R.anim.slide_out_down).
-            add(android.R.id.content,LoginFragment(),"LoginFragment").addToBackStack(null).commit()
+            add(android.R.id.content, LoginFragment(),"LoginFragment").addToBackStack(null).commit()
 
 
 

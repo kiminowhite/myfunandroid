@@ -1,4 +1,4 @@
-package com.knw.myfunandroid.utils
+package com.knw.myfunandroid.logic.utils
 
 import android.app.Activity
 import android.os.Build

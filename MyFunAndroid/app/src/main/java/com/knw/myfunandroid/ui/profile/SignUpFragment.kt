@@ -1,4 +1,4 @@
-package com.knw.myfunandroid;
+package com.knw.myfunandroid.ui.profile;
 
 import android.os.Bundle;
 import android.text.InputType
@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 
 import androidx.fragment.app.Fragment;
+import com.knw.myfunandroid.R
 
 public class SignUpFragment : Fragment() {
     private var passwordIsHiden = true

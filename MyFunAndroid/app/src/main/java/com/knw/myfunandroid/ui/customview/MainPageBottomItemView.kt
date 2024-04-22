@@ -1,4 +1,4 @@
-package com.knw.myfunandroid
+package com.knw.myfunandroid.ui.customview
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,8 +7,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.annotation.Dimension
-import com.knw.myfunandroid.utils.SizeUtils
+import com.knw.myfunandroid.R
+import com.knw.myfunandroid.logic.utils.SizeUtils
 
 class MainPageBottomItemView @JvmOverloads constructor(
     context: Context,
@@ -77,7 +77,8 @@ class MainPageBottomItemView @JvmOverloads constructor(
             typedArray.getColor(R.styleable.MainPageBottomItemView_text_color_defalut, -1)
         mTextColorPress =
             typedArray.getColor(R.styleable.MainPageBottomItemView_text_color_press, -1)
-        mTextSize=typedArray.getDimension(R.styleable.MainPageBottomItemView_text_size,
+        mTextSize=typedArray.getDimension(
+            R.styleable.MainPageBottomItemView_text_size,
             SizeUtils.dip2px(20f).toFloat())
         typedArray.recycle()
     }
@@ -85,7 +86,7 @@ class MainPageBottomItemView @JvmOverloads constructor(
       fun  onItemClick(v: View,mItemIconPressResId:Int,mTextColorPress:Int)
 
     }
-   fun setOnItemClickListener(onItemClickListener:OnItemClickListener)
+   fun setOnItemClickListener(onItemClickListener: OnItemClickListener)
    {
        this.onItemClickListener = onItemClickListener
    }

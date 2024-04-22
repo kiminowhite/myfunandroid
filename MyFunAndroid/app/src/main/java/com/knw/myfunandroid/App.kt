@@ -2,12 +2,13 @@ package com.knw.myfunandroid
 
 import android.app.Application
 import android.content.Context
+import com.knw.myfunandroid.logic.model.User
 
 class App : Application() {
     companion object {
         private var _isLogin: Boolean = false
-        private  var _loginUser :User?=null
-        var loginUser :User?
+        private  var _loginUser : User?=null
+        var loginUser : User?
             get()
             {
                 return _loginUser

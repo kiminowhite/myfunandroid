@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,7 +7,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <FrameLayout
 
@@ -15,6 +17,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/main_bottom_layout">
     </FrameLayout>
+
     <LinearLayout
         android:id="@+id/main_bottom_layout"
         android:background="@drawable/border_gray"
@@ -23,7 +26,7 @@
         android:layout_height="65dp"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
-       <com.knw.myfunandroid.MainPageBottomItemView
+       <com.knw.myfunandroid.ui.customview.MainPageBottomItemView
            android:id="@+id/home"
            android:layout_width="0dp"
            android:layout_weight="1"
@@ -36,8 +39,8 @@
            android:background="@drawable/bg_main_page_bottom_item"
            android:gravity="center"
            knw:text_size="4dp">
-       </com.knw.myfunandroid.MainPageBottomItemView>
-        <com.knw.myfunandroid.MainPageBottomItemView
+       </com.knw.myfunandroid.ui.customview.MainPageBottomItemView>
+        <com.knw.myfunandroid.ui.customview.MainPageBottomItemView
             android:id="@+id/project"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -49,9 +52,9 @@
             knw:text_color_press ="@color/text_lightblue"
             android:background="@drawable/bg_main_page_bottom_item"
             knw:text_size="4dp">
-        </com.knw.myfunandroid.MainPageBottomItemView>
+        </com.knw.myfunandroid.ui.customview.MainPageBottomItemView>
 
-        <com.knw.myfunandroid.MainPageBottomItemView
+        <com.knw.myfunandroid.ui.customview.MainPageBottomItemView
             android:id="@+id/official_accounts"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -63,8 +66,8 @@
             android:background="@drawable/bg_main_page_bottom_item"
             knw:text_color_press ="@color/text_lightblue"
             knw:text_size="4dp">
-        </com.knw.myfunandroid.MainPageBottomItemView>
-        <com.knw.myfunandroid.MainPageBottomItemView
+        </com.knw.myfunandroid.ui.customview.MainPageBottomItemView>
+        <com.knw.myfunandroid.ui.customview.MainPageBottomItemView
             android:id="@+id/system"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -76,8 +79,8 @@
             android:background="@drawable/bg_main_page_bottom_item"
             knw:text_color_press ="@color/text_lightblue"
             knw:text_size="4dp">
-        </com.knw.myfunandroid.MainPageBottomItemView>
-        <com.knw.myfunandroid.MainPageBottomItemView
+        </com.knw.myfunandroid.ui.customview.MainPageBottomItemView>
+        <com.knw.myfunandroid.ui.customview.MainPageBottomItemView
             android:id="@+id/profile"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -89,7 +92,7 @@
             android:background="@drawable/bg_main_page_bottom_item"
             knw:text_color_press ="@color/text_lightblue"
             knw:text_size="4dp">
-        </com.knw.myfunandroid.MainPageBottomItemView>
+        </com.knw.myfunandroid.ui.customview.MainPageBottomItemView>
 
 
     </LinearLayout>
