@@ -9,6 +9,11 @@ data class ArticleResponse(
     @SerializedName("errorCode") val errorCode: Int,
     @SerializedName("errorMsg") val errorMsg: String
 )
+data class TopArticleResponse(
+    @SerializedName("data") val articles: List<Article>,
+    @SerializedName("errorCode") val errorCode: Int,
+    @SerializedName("errorMsg") val errorMsg: String
+)
 
 data class ArticleData(
     @SerializedName("curPage") val curPage: Int,

@@ -1,9 +1,9 @@
 <com.google.android.material.card.MaterialCardView
+    android:id="@+id/card"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
     app:cardCornerRadius="4dp">
 
     <RelativeLayout
@@ -37,6 +37,7 @@
             android:text="java从初学到入土java从初学到入土java从初学到入土"
             android:textSize="20dp"
             android:textColor="@color/black"></TextView>
+
         <TextView
             android:id="@+id/super_chapter_name"
             android:layout_width="wrap_content"
@@ -46,9 +47,20 @@
             android:layout_marginLeft="15dp"
             android:layout_below="@+id/title"
             android:text="频道发布"
+            android:layout_toRightOf="@+id/top_mark"
             android:textColor="@color/black">
 
         </TextView>
+        <ImageView
+            android:id="@+id/top_mark"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:src="@mipmap/zhiding"></ImageView>
         <ImageView
             android:id="@+id/zan"
             android:layout_marginTop="15dp"

@@ -35,5 +35,24 @@ object Repository {
         emit(result)
     }
 
+    fun getTopArticles()= liveData(Dispatchers.IO) {
+        val result = try {
+            val topArticleResponse =   MyFunAndroidNetwork.getTopArticles()
+            if(topArticleResponse.errorCode==0)
+            {
+                val topArticles = topArticleResponse.articles
+                Result.success(topArticles)
+            }else
+            {
+                Result.failure(RuntimeException("response msg is${topArticleResponse.errorMsg}"))
+            }
+
+        }catch (e:Exception)
+        {
+            Result.failure<List<Article>>(e)
+        }
+        emit(result)
+    }
+
 
 }

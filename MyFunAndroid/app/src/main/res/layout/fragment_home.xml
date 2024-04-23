@@ -2,18 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/homepage"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/home_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:text="ホームページ"
-        android:gravity="center">
-    </TextView>
+        android:layout_height="200dp"></androidx.viewpager2.widget.ViewPager2>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/article_recycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/homepage">
+        android:layout_below="@+id/home_view_pager">
 
     </androidx.recyclerview.widget.RecyclerView>
 

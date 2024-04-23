@@ -13,7 +13,7 @@ object MyFunAndroidNetwork {
 
 
   suspend fun  getArticles(page:Int) = wanAndroidService.getArticles(page).await()
-
+  suspend fun   getTopArticles() = wanAndroidService.getTopArticles().await()
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {

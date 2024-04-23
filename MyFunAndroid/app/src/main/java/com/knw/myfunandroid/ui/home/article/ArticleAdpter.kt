@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import com.knw.myfunandroid.R
+import com.knw.myfunandroid.R.color.card_greyblue
 import com.knw.myfunandroid.logic.model.Article
 
 class ArticleAdpter(private val fragment: Fragment, private val articleList: List<Article>)
@@ -20,6 +23,8 @@ class ArticleAdpter(private val fragment: Fragment, private val articleList: Lis
         val title :TextView = view.findViewById<TextView>(R.id.title)
         val superChapterName :TextView = view.findViewById<TextView>(R.id.super_chapter_name)
         val zan:ImageView = view.findViewById<ImageView>(R.id.zan)
+        val card: MaterialCardView = view.findViewById<MaterialCardView>(R.id.card)
+         val topMark:ImageView = view.findViewById<ImageView>(R.id.top_mark)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,10 +37,31 @@ class ArticleAdpter(private val fragment: Fragment, private val articleList: Lis
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article =articleList[position]
-        holder.shareUser.text=article.shareUser
+        if(article.shareUser!="")
+        {
+            holder.shareUser.text=article.shareUser
+        }else
+        {
+            holder.shareUser.text=article.author
+        }
         holder.niceDate.text=article.niceDate
         holder.title.text=article.title
         holder.superChapterName.text=article.superChapterName
+        if(article.type == 1 )
+        {
+            //置顶文章 修改背景颜色,置顶图片
+            val color =ContextCompat.getColor(fragment.requireContext(), R.color.card_greyblue)
+            holder.card.setCardBackgroundColor(color)
+            holder.topMark.visibility=View.VISIBLE
+
+        }
+     if (article.type == 0)
+     {
+         val color =ContextCompat.getColor(fragment.requireContext(), R.color.white)
+         holder.card.setCardBackgroundColor(color)
+         holder.topMark.visibility=View.GONE
+     }
+
         holder.itemView.setOnClickListener({
             Log.d("test",article.link.toString())
 
