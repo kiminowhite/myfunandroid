@@ -1,5 +1,6 @@
-package com.knw.myfunandroid.ui.home.viewpage
+package com.knw.myfunandroid.ui.home.viewpager
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +14,8 @@ import com.knw.myfunandroid.logic.model.Article
 import com.knw.myfunandroid.logic.model.ImgItem
 import com.knw.myfunandroid.ui.home.article.ArticleInformationFragment
 
-class ViewPagerAdpter(private val fragment: Fragment, private val imgsList: List<ImgItem>)
-    : RecyclerView.Adapter<ViewPagerAdpter.ViewHolder>(){
+class HomeViewPagerAdapter(private val fragment: Fragment, private val imgsList: List<ImgItem>)
+    : RecyclerView.Adapter<HomeViewPagerAdapter.ViewHolder>(){
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgViewPagerItem:ImageView =view.findViewById<ImageView>(R.id.view_page_item_img)
@@ -28,6 +29,8 @@ class ViewPagerAdpter(private val fragment: Fragment, private val imgsList: List
     override fun getItemCount(): Int = imgsList.size
 
 
+
+    @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val img = imgsList[position]
         Glide.with(holder.itemView.context).load(img.imagePath).into(holder.imgViewPagerItem)

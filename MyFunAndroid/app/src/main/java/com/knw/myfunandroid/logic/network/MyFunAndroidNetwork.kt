@@ -9,11 +9,16 @@ import kotlin.coroutines.suspendCoroutine
 
 object MyFunAndroidNetwork {
     //service
-   private val  wanAndroidService =ServiceCreator.create<WanAndroidService>()
+   private val  articleService =ServiceCreator.create<ArticleService>()
+    private val projectService = ServiceCreator.create<ProjectService>()
+    private val officialService = ServiceCreator.create<OfficialService>()
 
 
-  suspend fun  getArticles(page:Int) = wanAndroidService.getArticles(page).await()
-  suspend fun   getTopArticles() = wanAndroidService.getTopArticles().await()
+  suspend fun  getArticles(page:Int) = articleService.getArticles(page).await()
+  suspend fun   getTopArticles() = articleService.getTopArticles().await()
+    suspend fun getProjectTree()= projectService.getProjectTree().await()
+
+    suspend fun getOfficialChapters()= officialService.getOfficialChapters().await()
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {

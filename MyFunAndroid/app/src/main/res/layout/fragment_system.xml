@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/system_tab_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="システム"
-        android:gravity="center">
+        android:layout_height="100dp"
+        android:background="@color/text_lightblue">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/system_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/text_lightblue"
+            app:tabTextColor="@color/system_normal"
+            app:tabSelectedTextColor="@color/white"
+            app:tabSelectedTextAppearance="@color/white"
+            app:tabIndicatorColor="@color/white"
+            app:tabTextAppearance="@style/TabTextAppearance"
+            >
 
-    </TextView>
+        </com.google.android.material.tabs.TabLayout>
+    </RelativeLayout>
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_below="@+id/system_tab_relative_layout"
+        android:id="@+id/system_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    </androidx.viewpager2.widget.ViewPager2>
 </RelativeLayout>

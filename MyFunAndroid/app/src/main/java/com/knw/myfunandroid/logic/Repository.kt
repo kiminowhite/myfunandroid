@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.liveData
 import com.knw.myfunandroid.logic.model.Article
 import com.knw.myfunandroid.logic.model.ArticleData
+import com.knw.myfunandroid.logic.model.OfficialChapterItem
+import com.knw.myfunandroid.logic.model.ProjectTreeItem
 import com.knw.myfunandroid.logic.network.MyFunAndroidNetwork
 import kotlinx.coroutines.Dispatchers
 import retrofit2.http.Path
@@ -54,5 +56,41 @@ object Repository {
         emit(result)
     }
 
+    fun getProjectTree()= liveData(Dispatchers.IO) {
+        val result = try {
+          val projectTreeResponse =  MyFunAndroidNetwork.getProjectTree()
+            if(projectTreeResponse.errorCode==0)
+            {
+               val projectTreeItems = projectTreeResponse.data
+                Result.success(projectTreeItems)
 
+            }else{
+                Result.failure(RuntimeException("response msg is${projectTreeResponse.errorMsg}"))
+            }
+        }catch (e:Exception)
+        {
+            Result.failure<List<ProjectTreeItem>>(e)
+        }
+        emit(result)
+    }
+
+
+    fun getOfficialChapters() = liveData(Dispatchers.IO) {
+        val result =try {
+            val officialChaptersResponse = MyFunAndroidNetwork.getOfficialChapters()
+            if(officialChaptersResponse.errorCode==0)
+            {
+                val officialAuthors = officialChaptersResponse.data
+                Result.success(officialAuthors)
+            }
+            else
+            {
+                Result.failure(RuntimeException("response msg is${officialChaptersResponse.errorMsg}"))
+            }
+        }catch (e:Exception)
+        {
+            Result.failure<List<OfficialChapterItem>>(e)
+        }
+        emit(result)
+    }
 }

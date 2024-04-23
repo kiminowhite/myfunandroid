@@ -1,6 +1,7 @@
 package com.knw.myfunandroid.ui.home
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,18 +16,21 @@ import androidx.viewpager2.widget.ViewPager2
 import com.knw.myfunandroid.R
 import com.knw.myfunandroid.logic.model.ImgItem
 import com.knw.myfunandroid.logic.utils.NetworkUtils
-import com.knw.myfunandroid.ui.home.article.ArticleAdpter
+import com.knw.myfunandroid.ui.home.article.ArticleAdapter
 import com.knw.myfunandroid.ui.home.article.ArticleViewModel
-import com.knw.myfunandroid.ui.home.viewpage.ViewPagerAdpter
+import com.knw.myfunandroid.ui.home.viewpager.HomeViewPagerAdapter
+
+
+// todo：1、修改整个页面的滑动布局 2、轮播图动画修改，添加细节，数据从网络获取 3、搜索热词功能
 
 class HomeFragment:Fragment() {
 
     val viewModel by lazy { ViewModelProvider(this).get(ArticleViewModel::class.java) }
     private  var currentPage :Int =0
-    private lateinit var  articleAdapter: ArticleAdpter
+    private lateinit var  articleAdapter: ArticleAdapter
     private lateinit var articleRecyclerView: RecyclerView
     private lateinit var viewPager:ViewPager2
-    private lateinit var viewPagerAdpter: ViewPagerAdpter
+    private lateinit var homeViewPagerAdapter: HomeViewPagerAdapter
     val imgList = listOf(
         ImgItem(
             desc = "我们支持订阅啦~",
@@ -104,16 +108,61 @@ class HomeFragment:Fragment() {
 
     }
 
+
     private fun initViewPager() {
-        //等待修改成动态
-        viewPagerAdpter = ViewPagerAdpter(this,imgList)
-        viewPager.adapter=viewPagerAdpter
+        //todo:等待修改成动态数据
+        homeViewPagerAdapter = HomeViewPagerAdapter(this,imgList)
+        viewPager.adapter=homeViewPagerAdapter
+
+        val handler = Handler()
+
+   // 设置自动切换间隔时间
+        val autoScrollInterval = 3000L
+
+// 创建自动切换的任务
+        val autoScrollTask = object : Runnable {
+            override fun run() {
+                // 获取当前页面的索引
+                val currentItem = viewPager.currentItem
+
+                // 计算下一页的索引（如果已经是最后一页，则回到第一页）
+                val nextItem = if (currentItem == viewPager.adapter?.itemCount?.minus(1)) 0 else currentItem + 1
+
+                // 切换到下一页
+                viewPager.setCurrentItem(nextItem, true)
+            }
+        }
+
+// 监听用户滑动操作
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+                when (state) {
+                    ViewPager2.SCROLL_STATE_DRAGGING -> {
+                        // 当用户开始拖动页面时停止自动切换
+                        handler.removeCallbacks(autoScrollTask)
+                    }
+                    ViewPager2.SCROLL_STATE_IDLE -> {
+                        // 当页面停止滚动时重新启动自动切换
+                        handler.postDelayed(autoScrollTask, autoScrollInterval)
+                    }
+                }
+            }
+        })
+
+// 启动自动切换任务
+        handler.postDelayed(autoScrollTask, autoScrollInterval)
+
+
+
+
+
     }
 
     private fun  initArticles() {
         val layoutManager = LinearLayoutManager(activity)
         articleRecyclerView.layoutManager = layoutManager
-        articleAdapter = ArticleAdpter(this, viewModel.articleList)
+        articleAdapter = ArticleAdapter(this, viewModel.articleList)
         articleRecyclerView.adapter = articleAdapter
 
         //获取置顶

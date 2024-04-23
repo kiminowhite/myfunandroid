@@ -12,11 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.knw.myfunandroid.R
-import com.knw.myfunandroid.R.color.card_greyblue
 import com.knw.myfunandroid.logic.model.Article
 
-class ArticleAdpter(private val fragment: Fragment, private val articleList: List<Article>)
-    :RecyclerView.Adapter<ArticleAdpter.ViewHolder>(){
+class ArticleAdapter(private val fragment: Fragment, private val articleList: List<Article>)
+    :RecyclerView.Adapter<ArticleAdapter.ViewHolder>(){
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val shareUser:TextView =view.findViewById<TextView>(R.id.share_user)
         val niceDate:TextView =view.findViewById<TextView>(R.id.nice_date)

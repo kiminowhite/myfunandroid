@@ -14,4 +14,5 @@
     <color name="text_bluesky2">#2babee</color>
     <color name="text_bluesky">#B0E2FF</color>
     <color name="card_greyblue">#d3e3fd</color>
+    <color name="system_normal">#79cdff</color>
 </resources>
