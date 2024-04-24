@@ -27,7 +27,7 @@ class ArticleAdapter(private val fragment: Fragment, private val articleList: Li
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-       val view = LayoutInflater.from(parent.context).inflate(R.layout.article_item,parent,false)
+       val view = LayoutInflater.from(parent.context).inflate(R.layout.home_article_item,parent,false)
         return ViewHolder(view)
     }
 
@@ -60,6 +60,8 @@ class ArticleAdapter(private val fragment: Fragment, private val articleList: Li
          holder.card.setCardBackgroundColor(color)
          holder.topMark.visibility=View.GONE
      }
+
+
 
         holder.itemView.setOnClickListener({
             Log.d("test",article.link.toString())

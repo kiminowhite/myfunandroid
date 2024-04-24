@@ -76,6 +76,8 @@ class HomeFragment:Fragment() {
     }
 
     private fun initListener() {
+
+        //todo 修改更好的刷新方法
         articleRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -88,7 +90,7 @@ class HomeFragment:Fragment() {
                     // 如果最后一个可见的 item 的位置等于总 item 数量减去 1，表示已经滚动到了最后一个 item
                     if (lastVisibleItemPosition == totalItemCount - 1) {
                         // 执行加载新数据的操作
-                        viewModel.getArticles(currentPage++) // 这里调用 ViewModel 中加载新数据的方法
+                        viewModel.getArticles(++currentPage) // 这里调用 ViewModel 中加载新数据的方法
                     }
                 }
             }
@@ -104,7 +106,7 @@ class HomeFragment:Fragment() {
     {
         super.onActivityCreated(savedInstanceState)
         initViewPager()
-       initArticles()
+        initArticles()
 
     }
 

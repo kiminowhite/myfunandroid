@@ -1,0 +1,89 @@
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/card"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/share_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="35dp"
+            android:text="分享者名"
+            android:textColor="@color/text_grey"></TextView>
+        <TextView
+            android:id="@+id/nice_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="发布时间"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/text_grey">
+        </TextView>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/share_user"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="java从初学到入土java从初学到入土java从初学到入土"
+            android:textSize="20dp"
+            android:textColor="@color/black"></TextView>
+        <TextView
+            android:id="@+id/des"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="我是java我是java我是java我是java我是java我是java我是java我是java我是java我是java"
+            android:textColor="@color/text_grey">
+
+        </TextView>
+
+        <TextView
+
+            android:id="@+id/super_chapter_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/des"
+            android:text="频道发布"
+            android:textColor="@color/black">
+
+        </TextView>
+        <ImageView
+            android:id="@+id/zan"
+
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/thumbnail"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/zan">
+        </ImageView>
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@+id/des"
+            android:layout_below="@+id/nice_date"
+            android:layout_width="65dp"
+            android:layout_height="65dp">
+
+        </ImageView>
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

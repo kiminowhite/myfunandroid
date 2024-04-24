@@ -25,7 +25,8 @@ class OfficialFragment :Fragment() {
     private lateinit var tabLayout : TabLayout
     private lateinit var viewPager: ViewPager2
     private lateinit var officialChapterTitle :List<String>
-    private val listFragments: ArrayList<OfficialViewPagerFragment> = ArrayList()
+    private lateinit var  officialChapterIds:List<Int>
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,15 +55,15 @@ class OfficialFragment :Fragment() {
             val officialChapterItems:List<OfficialChapterItem>? = result.getOrNull()
             val authorNames = officialChapterItems!!.map { it.name }
             officialChapterTitle=authorNames
+            val authorIds =officialChapterItems!!.map{it.id}
+            officialChapterIds=authorIds
             Log.d("test",officialChapterTitle.toString())
 
-            //todo：这里要修改真正要创建的fragment，具体后面怎么改后面再说
-            repeat(authorNames.size) {
-                listFragments.add(OfficialViewPagerFragment())
-            }
 
 
-            viewPager.adapter= MyPagerAdapter(requireActivity(), listFragments)
+
+
+            viewPager.adapter= MyPagerAdapter(requireActivity(),officialChapterIds)
             // TabLayout与ViewPager2绑定
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 //上方文本和集合对应
@@ -74,15 +75,18 @@ class OfficialFragment :Fragment() {
     }
     class MyPagerAdapter(
         fragmentActivity: FragmentActivity,
-        private val listFragments: List<OfficialViewPagerFragment>
+        private val officialChapterIds:List<Int>
+
     ) : FragmentStateAdapter(fragmentActivity) {
 
         override fun getItemCount(): Int {
-            return listFragments.size
+         return officialChapterIds.size
         }
 
         override fun createFragment(position: Int): Fragment {
-            return listFragments[position]
+
+            return OfficialViewPagerFragment.newInstance(officialChapterIds[position])
+
         }
     }
 }

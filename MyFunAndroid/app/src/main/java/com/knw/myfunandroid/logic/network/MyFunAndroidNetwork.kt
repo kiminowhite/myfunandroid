@@ -17,8 +17,11 @@ object MyFunAndroidNetwork {
   suspend fun  getArticles(page:Int) = articleService.getArticles(page).await()
   suspend fun   getTopArticles() = articleService.getTopArticles().await()
     suspend fun getProjectTree()= projectService.getProjectTree().await()
+    suspend fun  getProjectArticles(page: Int,cid:Int) =  projectService.getProjectArticles(page,cid).await()
+
 
     suspend fun getOfficialChapters()= officialService.getOfficialChapters().await()
+    suspend fun getOffcialArticles(aid:Int,page: Int) = officialService.getOffcialArticles(aid,page).await()
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {
