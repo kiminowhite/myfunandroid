@@ -2,9 +2,11 @@ package com.knw.myfunandroid.ui.profile
 
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsetsAnimation
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,7 +15,14 @@ import androidx.fragment.app.Fragment
 import com.knw.myfunandroid.App.Companion.isLogin
 import com.knw.myfunandroid.App.Companion.loginUser
 import com.knw.myfunandroid.R
+
+import com.knw.myfunandroid.logic.model.LoginResponse
 import com.knw.myfunandroid.logic.model.User
+import com.knw.myfunandroid.logic.network.ServiceCreator
+import com.knw.myfunandroid.logic.network.UserService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginFragment : Fragment() {
     private var passwordIsHiden = true
@@ -53,28 +62,44 @@ class LoginFragment : Fragment() {
             editPassword.setSelection(editPassword.text.length)
         }
         buttonLogin.setOnClickListener({
-            //获得登陆结果
-            //失败
-            //isLogin=false
-            //成功
-            isLogin=true
-            loginUser= User("aiges","123456", R.mipmap.aiges,"アイギス",114514,emptyList())
-
-            if(isLogin==false)
-            {
-                //失败了清空内容
-                editUsername.setText("")
-
-                Toast.makeText(context,"账号或密码错误",Toast.LENGTH_SHORT).show()
-
-            }else{
-                //成功，修改islogin登陆为成功，返回profileFragment,并且关闭当前fragment，用户信息保存到app或专门仓库
 
 
-                val profileFragment =  requireActivity().supportFragmentManager.findFragmentByTag("ProfileFragment") as ProfileFragment
-                profileFragment.refreshLoginState()
-                requireActivity().supportFragmentManager.popBackStack()
-            }
+            val  userService = ServiceCreator.create<UserService>()
+
+           // 发起登录请求
+            userService.userLogin(editUsername.text.toString(),editPassword.text.toString()).enqueue(object :
+                Callback<LoginResponse> {
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                    if (response.isSuccessful) {
+                        val loginResponse = response.body()
+                        Log.d("loginResponse",loginResponse.toString())
+                        if (loginResponse?.errorCode == -1) {
+                            // 登陆失败
+                            isLogin = false
+                            editUsername.setText("")
+                            editPassword.setText("")
+                            Toast.makeText(context, "抱歉,"+loginResponse.errorMsg, Toast.LENGTH_SHORT).show()
+                        } else {
+                            // 登录成功
+                            isLogin = true
+                            loginUser = loginResponse?.data
+
+                            val profileFragment = requireActivity().supportFragmentManager.findFragmentByTag("ProfileFragment") as ProfileFragment
+                            profileFragment.refreshLoginState()
+                            requireActivity().supportFragmentManager.popBackStack()
+                        }
+                    } else {
+                        Log.d("login", "网络请求失败！")
+                    }
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    Log.d("login", "网络请求失败！")
+                }
+            })
+
+
+
 
 
 

@@ -11,11 +11,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.knw.myfunandroid.R
+import com.knw.myfunandroid.ui.system.viewpager.NaviViewPagerFragment
 import com.knw.myfunandroid.ui.system.viewpager.SystemViewPagerFragment
 
 
 class SystemFragment:Fragment() {
-    private val listFragments: ArrayList<SystemViewPagerFragment> = ArrayList()
+    private val listFragments: ArrayList<Fragment> = ArrayList()
     private val title = arrayOf("体系", "导航")
     private lateinit var viewPager :ViewPager2
     private lateinit var tabLayout: TabLayout
@@ -28,7 +29,7 @@ class SystemFragment:Fragment() {
         initView(view)
 
         listFragments.add(SystemViewPagerFragment())
-        listFragments.add(SystemViewPagerFragment())
+        listFragments.add(NaviViewPagerFragment())
         viewPager.adapter=MyPagerAdapter(requireActivity(),listFragments)
 
         // TabLayout与ViewPager2绑定
@@ -53,7 +54,7 @@ class SystemFragment:Fragment() {
 
     class MyPagerAdapter(
         fragmentActivity: FragmentActivity,
-        private val listFragments: List<SystemViewPagerFragment>
+        private val listFragments: List<Fragment>
     ) : FragmentStateAdapter(fragmentActivity) {
 
         override fun getItemCount(): Int {

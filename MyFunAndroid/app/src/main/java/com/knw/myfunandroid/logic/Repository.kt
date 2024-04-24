@@ -4,10 +4,12 @@ import android.util.Log
 import androidx.lifecycle.liveData
 import com.knw.myfunandroid.logic.model.Article
 import com.knw.myfunandroid.logic.model.ArticleData
+import com.knw.myfunandroid.logic.model.NaviTreeItem
 import com.knw.myfunandroid.logic.model.OfficialArticle
 import com.knw.myfunandroid.logic.model.OfficialChapterItem
 import com.knw.myfunandroid.logic.model.ProjectArticle
 import com.knw.myfunandroid.logic.model.ProjectTreeItem
+import com.knw.myfunandroid.logic.model.SystemTreeItem
 import com.knw.myfunandroid.logic.network.MyFunAndroidNetwork
 import kotlinx.coroutines.Dispatchers
 import retrofit2.http.Path
@@ -134,6 +136,44 @@ object Repository {
         }catch (e:Exception)
         {
             Result.failure<List<OfficialArticle>>(e)
+        }
+        emit(result)
+    }
+
+    fun getSystemTree()= liveData(Dispatchers.IO) {
+        val  result=try {
+            val systemTreeResponse = MyFunAndroidNetwork.getSystemTree()
+            if(systemTreeResponse.errorCode == 0)
+            {
+               val systemTreeItemList =  systemTreeResponse.data
+                Result.success(systemTreeItemList)
+            }else{
+                Result.failure(RuntimeException("response msg is${ systemTreeResponse.errorMsg}"))
+            }
+
+        }catch (e:Exception)
+
+        {
+            Result.failure<List<SystemTreeItem>>(e)
+        }
+        emit(result)
+    }
+
+    fun getNaviTree()= liveData(Dispatchers.IO) {
+        val  result=try {
+            val naviTreeResponse = MyFunAndroidNetwork.getNaviTree()
+            if(naviTreeResponse.errorCode == 0)
+            {
+                val naviTreeItemList =  naviTreeResponse.data
+                Result.success(naviTreeItemList)
+            }else{
+                Result.failure(RuntimeException("response msg is${ naviTreeResponse.errorMsg}"))
+            }
+
+        }catch (e:Exception)
+
+        {
+            Result.failure<List<NaviTreeItem>>(e)
         }
         emit(result)
     }

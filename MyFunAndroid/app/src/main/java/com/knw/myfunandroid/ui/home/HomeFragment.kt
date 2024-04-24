@@ -21,7 +21,7 @@ import com.knw.myfunandroid.ui.home.article.ArticleViewModel
 import com.knw.myfunandroid.ui.home.viewpager.HomeViewPagerAdapter
 
 
-// todo：1、修改整个页面的滑动布局 2、轮播图动画修改，添加细节，数据从网络获取 3、搜索热词功能
+// todo：1、修改整个页面的滑动布局 2、轮播图动画修改，添加细节、数据动态获取 3、搜索热词功能
 
 class HomeFragment:Fragment() {
 
@@ -31,7 +31,7 @@ class HomeFragment:Fragment() {
     private lateinit var articleRecyclerView: RecyclerView
     private lateinit var viewPager:ViewPager2
     private lateinit var homeViewPagerAdapter: HomeViewPagerAdapter
-    val imgList = listOf(
+    val bannerList = listOf(
         ImgItem(
             desc = "我们支持订阅啦~",
             id = 30,
@@ -113,7 +113,7 @@ class HomeFragment:Fragment() {
 
     private fun initViewPager() {
         //todo:等待修改成动态数据
-        homeViewPagerAdapter = HomeViewPagerAdapter(this,imgList)
+        homeViewPagerAdapter = HomeViewPagerAdapter(this,bannerList)
         viewPager.adapter=homeViewPagerAdapter
 
         val handler = Handler()

@@ -15,6 +15,7 @@ import com.knw.myfunandroid.R
 import de.hdodenhof.circleimageview.CircleImageView
 
 
+//todo 实现用户收藏页和其他乱七八糟功能
 class ProfileFragment :Fragment() {
 
     private lateinit var layoutProFileLogin : RelativeLayout //登陆成功布局
@@ -100,9 +101,9 @@ class ProfileFragment :Fragment() {
              layoutProfileNotLogin.visibility=View.GONE
             if(loginUser!=null)
             {
-                viewLoginIcon.setImageResource(loginUser!!.iconId)
-                textLoginUsername.text= loginUser!!.fullName
-                textLoginUserScore.text ="积分：${loginUser!!.score.toString()}"
+                viewLoginIcon.setImageResource(R.mipmap.user_avatar)
+                textLoginUsername.text= loginUser!!.nickname
+                textLoginUserScore.text ="积分：${loginUser!!.coinCount.toString()}"
             }
 
          }

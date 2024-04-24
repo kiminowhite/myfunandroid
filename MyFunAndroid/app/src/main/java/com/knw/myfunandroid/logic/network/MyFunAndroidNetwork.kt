@@ -12,6 +12,8 @@ object MyFunAndroidNetwork {
    private val  articleService =ServiceCreator.create<ArticleService>()
     private val projectService = ServiceCreator.create<ProjectService>()
     private val officialService = ServiceCreator.create<OfficialService>()
+    private val systemService=ServiceCreator.create<SystemService>()
+    private val  naviService = ServiceCreator.create<NaviService>()
 
 
   suspend fun  getArticles(page:Int) = articleService.getArticles(page).await()
@@ -22,6 +24,9 @@ object MyFunAndroidNetwork {
 
     suspend fun getOfficialChapters()= officialService.getOfficialChapters().await()
     suspend fun getOffcialArticles(aid:Int,page: Int) = officialService.getOffcialArticles(aid,page).await()
+
+    suspend fun getSystemTree()= systemService.getSystemTree().await()
+    suspend fun getNaviTree()= naviService.getNaviTree().await()
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {

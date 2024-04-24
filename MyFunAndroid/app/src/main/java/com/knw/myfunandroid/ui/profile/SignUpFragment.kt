@@ -2,6 +2,7 @@ package com.knw.myfunandroid.ui.profile;
 
 import android.os.Bundle;
 import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,14 @@ import android.widget.TextView
 import android.widget.Toast
 
 import androidx.fragment.app.Fragment;
+import com.knw.myfunandroid.App.Companion.loginUser
 import com.knw.myfunandroid.R
+import com.knw.myfunandroid.logic.model.LoginResponse
+import com.knw.myfunandroid.logic.network.ServiceCreator
+import com.knw.myfunandroid.logic.network.UserService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 public class SignUpFragment : Fragment() {
     private var passwordIsHiden = true
@@ -50,8 +58,40 @@ public class SignUpFragment : Fragment() {
                     editSignPassword.text.clear()
                     editSignPasswordConfim.text.clear()
                 }else{
-                    Toast.makeText(context,"注册成功",Toast.LENGTH_SHORT).show()
-                    requireActivity().supportFragmentManager.popBackStack()
+               //真正发送注册请求
+                    val  userService = ServiceCreator.create<UserService>()
+                    userService.userSignUp(editSignUsername.text.toString(),editSignPassword.text.toString(),editSignPasswordConfim.text.toString()).
+                    enqueue(object :
+                        Callback<LoginResponse> {
+                        override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                            if (response.isSuccessful) {
+                                val loginResponse = response.body()
+                                Log.d("loginResponse",loginResponse.toString())
+                                if (loginResponse?.errorCode == -1) {
+                                    // 注册失败
+                                    editSignUsername.setText("")
+                                    editSignPassword.setText("")
+                                    editSignPasswordConfim.setText("")
+                                    Toast.makeText(context, "抱歉,"+loginResponse.errorMsg, Toast.LENGTH_SHORT).show()
+                                } else {
+                                    // 注册成功
+
+                                    loginUser = loginResponse?.data
+
+                                    Toast.makeText(context,"注册成功",Toast.LENGTH_SHORT).show()
+                                    requireActivity().supportFragmentManager.popBackStack()
+                                }
+                            } else {
+                                Log.d("login", "网络请求失败！")
+                            }
+                        }
+
+                        override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                            Log.d("login", "网络请求失败！")
+                        }
+                    })
+
+
                 }
             }
 
