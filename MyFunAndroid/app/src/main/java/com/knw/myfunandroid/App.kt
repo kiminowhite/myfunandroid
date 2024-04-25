@@ -8,6 +8,15 @@ class App : Application() {
     companion object {
         private var _isLogin: Boolean = false
         private  var _loginUser : User?=null
+        private var _cookies:MutableList<String> ?=null
+
+        var cookies: MutableList<String>?
+            get() {
+                return _cookies
+            }set(value) {
+                _cookies=value
+            }
+
         var loginUser : User?
             get()
             {

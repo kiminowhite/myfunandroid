@@ -77,7 +77,7 @@ class HomeFragment:Fragment() {
 
     private fun initListener() {
 
-        //todo 修改更好的刷新方法
+        //todo 修改更好的刷新方法,修改数据展示不正常的bug
         articleRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -112,7 +112,7 @@ class HomeFragment:Fragment() {
 
 
     private fun initViewPager() {
-        //todo:等待修改成动态数据
+
         homeViewPagerAdapter = HomeViewPagerAdapter(this,bannerList)
         viewPager.adapter=homeViewPagerAdapter
 

@@ -9,6 +9,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.knw.myfunandroid.App.Companion.cookies
 import com.knw.myfunandroid.App.Companion.isLogin
 import com.knw.myfunandroid.App.Companion.loginUser
 import com.knw.myfunandroid.R
@@ -52,6 +53,7 @@ class ProfileFragment :Fragment() {
         imgLogout.setOnClickListener(View.OnClickListener {
             isLogin =false
             loginUser=null
+            cookies=null
             refreshLoginState()
             Toast.makeText(context,"您已顺利退出登陆",Toast.LENGTH_SHORT).show()
         })
