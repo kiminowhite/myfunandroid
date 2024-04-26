@@ -12,6 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.knw.myfunandroid.R
 import com.knw.myfunandroid.logic.model.ImgItem
@@ -31,8 +33,10 @@ class HomeFragment : Fragment() {
     private var currentPage: Int = 0
     private lateinit var articleAdapter: ArticleAdapter
     private lateinit var articleRecyclerView: RecyclerView
+
     private lateinit var viewPager: ViewPager2
     private lateinit var homeViewPagerAdapter: HomeViewPagerAdapter
+    private var isLoading = false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,29 +51,49 @@ class HomeFragment : Fragment() {
 
     private fun initListener() {
 
-        // todo   修改更好的刷新方法,修改数据分页错误bug
+
+//        articleRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//
+//                val layoutManager = recyclerView.layoutManager
+//                if (layoutManager != null && layoutManager is LinearLayoutManager) {
+//                    val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+//                    val totalItemCount = layoutManager.itemCount
+//
+//                    // 如果最后一个可见的 item 的位置等于总 item 数量减去 1，表示已经滚动到了最后一个 item
+//                    if (lastVisibleItemPosition == totalItemCount - 1) {
+//                        // 执行加载新数据的操作
+//                        articleViewModel.getArticles(++currentPage) // 这里调用 ViewModel 中加载新数据的方法
+//                    }
+//                }
+//            }
+//        })
         articleRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
-                val layoutManager = recyclerView.layoutManager
-                if (layoutManager != null && layoutManager is LinearLayoutManager) {
-                    val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
-                    val totalItemCount = layoutManager.itemCount
+                if (!isLoading && visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
+                    // 到达底部，加载下一页数据
+                    isLoading=true
+                    articleViewModel.getArticles(++currentPage)
 
-                    // 如果最后一个可见的 item 的位置等于总 item 数量减去 1，表示已经滚动到了最后一个 item
-                    if (lastVisibleItemPosition == totalItemCount - 1) {
-                        // 执行加载新数据的操作
-                        articleViewModel.getArticles(++currentPage) // 这里调用 ViewModel 中加载新数据的方法
-                    }
                 }
             }
         })
+
+
+
     }
 
     private fun initView(view: View) {
         articleRecyclerView = view.findViewById(R.id.article_recycleview)
         viewPager = view.findViewById<ViewPager2>(R.id.home_view_pager)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -155,6 +179,7 @@ class HomeFragment : Fragment() {
             if (topArticles != null) {
                 articleViewModel.articleList.addAll(topArticles)
                 articleAdapter.notifyDataSetChanged()
+              isLoading=false
             }
         })
 
@@ -163,6 +188,7 @@ class HomeFragment : Fragment() {
             if (articles != null) {
                 articleViewModel.articleList.addAll(articles)
                 articleAdapter.notifyDataSetChanged()
+                isLoading=false
             } else {
                 Toast.makeText(activity, "未能查询到任何文章", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()

@@ -64,8 +64,7 @@ class OfficialViewPagerFragment : Fragment() {
                         Log.d("currentPage", currentPage.toString())
                         viewModel.getOfficalArticles(arguments!!.getInt("aid"), ++currentPage)
                         {
-                            // 加载完成后，重置标志
-                            isLoading = false
+
                         }
 
                     }
@@ -93,8 +92,7 @@ class OfficialViewPagerFragment : Fragment() {
         if (!isLoading) {
             isLoading = true
             viewModel.getOfficalArticles(aid!!, currentPage) {
-                // 加载完成后，重置标志
-                isLoading = false
+
             }
         }
 
@@ -103,6 +101,7 @@ class OfficialViewPagerFragment : Fragment() {
             if (officialArticles != null) {
                 viewModel.officialArticleList.addAll(officialArticles)
                 officialArticleAdapter.notifyDataSetChanged()
+                isLoading = false
             } else {
                 Toast.makeText(activity, "未能查询到任何文章", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()

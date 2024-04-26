@@ -89,8 +89,7 @@ class SystemArticleFragment : Fragment() {
                         Log.d("currentPage", currentPage.toString())
                         viewModel.getArticlesByCid(++currentPage, arguments!!.getInt("cid"))
                         {
-                            // 加载完成后，重置标志
-                            isLoading = false
+
                         }
 
 
@@ -127,8 +126,7 @@ class SystemArticleFragment : Fragment() {
         if (!isLoading) {
             isLoading = true
             viewModel.getArticlesByCid(currentPage, cid!!) {
-                // 加载完成后，重置标志
-                isLoading = false
+
             }
         }
         viewModel.articleByCidLiveData.observe(viewLifecycleOwner, Observer { result ->
@@ -137,6 +135,7 @@ class SystemArticleFragment : Fragment() {
                 viewModel.artcileByCidList.addAll(systemArticles)
 
                 systemArticleAdapter.notifyDataSetChanged()
+                isLoading=false
             } else {
                 Toast.makeText(activity, "未能查询到任何文章", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()

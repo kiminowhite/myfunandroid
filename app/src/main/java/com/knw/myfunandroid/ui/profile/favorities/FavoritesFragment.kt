@@ -92,8 +92,7 @@ class FavoritesFragment : Fragment() {
                         Log.d("currentPage", currentPage.toString())
                         viewModel.getCollectArticles(++currentPage)
                         {
-                            // 加载完成后，重置标志
-                            isLoading = false
+
                         }
 
                     }
@@ -138,8 +137,7 @@ class FavoritesFragment : Fragment() {
             //清除原有列表重新获取
             viewModel.collectArticleList.clear()
             viewModel.getCollectArticles(currentPage) {
-                // 加载完成后，重置标志
-                isLoading = false
+
             }
         }
 
@@ -162,6 +160,7 @@ class FavoritesFragment : Fragment() {
 
                 }
                 collectArticleAdapter.notifyDataSetChanged()
+                isLoading=false
 
             } else {
                 collectLoginTip.visibility = View.VISIBLE
@@ -182,8 +181,7 @@ class FavoritesFragment : Fragment() {
             Log.d("collectArticleList", "刷新收藏页面")
             viewModel.collectArticleList.clear()
             viewModel.getCollectArticles(currentPage) {
-                // 加载完成后，重置标志
-                isLoading = false
+
             }
         }
 

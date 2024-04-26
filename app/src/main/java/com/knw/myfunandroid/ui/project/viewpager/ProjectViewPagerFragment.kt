@@ -50,31 +50,53 @@ class ProjectViewPagerFragment : Fragment() {
     }
 
     private fun initListener() {
+//        projectArticleRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//
+//                val layoutManager = recyclerView.layoutManager
+//                if (layoutManager != null && layoutManager is LinearLayoutManager) {
+//                    val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+//                    val totalItemCount = layoutManager.itemCount
+//
+//                    // 如果最后一个可见的 item 的位置等于总 item 数量减去 1，表示已经滚动到了最后一个 item
+//                    if (lastVisibleItemPosition == totalItemCount - 1 && !isLoading) {
+//                        // 标记正在加载数据
+//                        isLoading = true
+//                        // 执行加载新数据的操作
+//                        Log.d("currentPage", currentPage.toString())
+//                        viewModel.getProjectArticles(++currentPage, arguments!!.getInt("cid"))
+//                        {
+//                            // 加载完成后，重置标志
+//                            isLoading = false
+//                        }
+//
+//                    }
+//                }
+//            }
+//        })
         projectArticleRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
-                val layoutManager = recyclerView.layoutManager
-                if (layoutManager != null && layoutManager is LinearLayoutManager) {
-                    val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
-                    val totalItemCount = layoutManager.itemCount
+                if (!isLoading && visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
 
-                    // 如果最后一个可见的 item 的位置等于总 item 数量减去 1，表示已经滚动到了最后一个 item
-                    if (lastVisibleItemPosition == totalItemCount - 1 && !isLoading) {
-                        // 标记正在加载数据
                         isLoading = true
+
                         // 执行加载新数据的操作
                         Log.d("currentPage", currentPage.toString())
                         viewModel.getProjectArticles(++currentPage, arguments!!.getInt("cid"))
                         {
-                            // 加载完成后，重置标志
-                            isLoading = false
-                        }
 
-                    }
                 }
+
             }
-        })
+        }
+    })
     }
 
     private fun initView(view: View) {
@@ -99,8 +121,6 @@ class ProjectViewPagerFragment : Fragment() {
         if (!isLoading) {
             isLoading = true
             viewModel.getProjectArticles(currentPage, cid!!) {
-                // 加载完成后，重置标志
-                isLoading = false
             }
         }
 
@@ -111,6 +131,7 @@ class ProjectViewPagerFragment : Fragment() {
                 viewModel.projectArticleList.addAll(projectArticles)
                 Log.d("testproject", viewModel.projectArticleList.toString())
                 projectArticleAdapter.notifyDataSetChanged()
+                isLoading=false
             } else {
                 Toast.makeText(activity, "未能查询到任何文章", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
