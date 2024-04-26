@@ -54,6 +54,7 @@
             <EditText
                 android:drawableLeft="@mipmap/yonghuming"
                 android:drawablePadding="10dp"
+                android:singleLine="true"
                 android:id="@+id/edit_sign_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,6 +64,7 @@
                 android:layout_below="@+id/edit_sign_username"
                 android:drawableLeft="@mipmap/mima"
                 android:drawablePadding="10dp"
+                android:singleLine="true"
                 android:id="@+id/edit_sign_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,6 +75,7 @@
                 android:layout_below="@+id/edit_sign_password"
                 android:drawableLeft="@mipmap/mima"
                 android:drawablePadding="10dp"
+                android:singleLine="true"
                 android:id="@+id/edit_sign_password_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

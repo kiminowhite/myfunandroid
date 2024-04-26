@@ -14,20 +14,20 @@ import com.knw.myfunandroid.logic.model.Article
 import com.knw.myfunandroid.logic.model.ImgItem
 import com.knw.myfunandroid.ui.home.article.ArticleInformationFragment
 
-class HomeViewPagerAdapter(private val fragment: Fragment, private val imgsList: List<ImgItem>)
-    : RecyclerView.Adapter<HomeViewPagerAdapter.ViewHolder>(){
+class HomeViewPagerAdapter(private val fragment: Fragment, private val imgsList: List<ImgItem>) :
+    RecyclerView.Adapter<HomeViewPagerAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imgViewPagerItem:ImageView =view.findViewById<ImageView>(R.id.view_page_item_img)
+        val imgViewPagerItem: ImageView = view.findViewById<ImageView>(R.id.view_page_item_img)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-       val view = LayoutInflater.from(parent.context).inflate(R.layout.view_page_item,parent,false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_view_page, parent, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int = imgsList.size
-
 
 
     @SuppressLint("SuspiciousIndentation")
@@ -39,7 +39,7 @@ class HomeViewPagerAdapter(private val fragment: Fragment, private val imgsList:
             // 创建要跳转的 Fragment 实例，并将数据传递给它
             val articleInfoFragment = ArticleInformationFragment().apply {
                 arguments = Bundle().apply {
-                  val targetArticle=  getTargetArticle(img.title,img.url)
+                    val targetArticle = getTargetArticle(img.title, img.url)
                     putSerializable("article", targetArticle)
                 }
             }
@@ -57,7 +57,7 @@ class HomeViewPagerAdapter(private val fragment: Fragment, private val imgsList:
         })
     }
 
-    private fun getTargetArticle(title: String, url: String):Article {
+    private fun getTargetArticle(title: String, url: String): Article {
         val article = Article(
             adminAdd = false,
             apkLink = "",
@@ -93,7 +93,8 @@ class HomeViewPagerAdapter(private val fragment: Fragment, private val imgsList:
             type = 0,
             userId = 0,
             visible = 0,
-            zan = 0)
+            zan = 0
+        )
         return article
     }
 

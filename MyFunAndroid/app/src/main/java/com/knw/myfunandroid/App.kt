@@ -7,24 +7,23 @@ import com.knw.myfunandroid.logic.model.User
 class App : Application() {
     companion object {
         private var _isLogin: Boolean = false
-        private  var _loginUser : User?=null
-        private var _cookies:MutableList<String> ?=null
+        private var _loginUser: User? = null
+        private var _cookies: MutableList<String>? = null
 
         var cookies: MutableList<String>?
             get() {
                 return _cookies
-            }set(value) {
-                _cookies=value
+            }
+            set(value) {
+                _cookies = value
             }
 
-        var loginUser : User?
-            get()
-            {
+        var loginUser: User?
+            get() {
                 return _loginUser
             }
-            set(value)
-            {
-                _loginUser =value
+            set(value) {
+                _loginUser = value
             }
         var isLogin: Boolean
             get() {

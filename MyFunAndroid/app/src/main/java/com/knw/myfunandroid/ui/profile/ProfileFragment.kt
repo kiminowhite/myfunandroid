@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -13,24 +12,30 @@ import com.knw.myfunandroid.App.Companion.cookies
 import com.knw.myfunandroid.App.Companion.isLogin
 import com.knw.myfunandroid.App.Companion.loginUser
 import com.knw.myfunandroid.R
+import com.knw.myfunandroid.ui.profile.favorities.FavoritesFragment
+import com.knw.myfunandroid.ui.profile.user.LoginFragment
 import de.hdodenhof.circleimageview.CircleImageView
 
 
-//todo 实现用户收藏页和其他乱七八糟功能
-class ProfileFragment :Fragment() {
+class ProfileFragment : Fragment() {
 
-    private lateinit var layoutProFileLogin : RelativeLayout //登陆成功布局
-    private lateinit var layoutProfileNotLogin : RelativeLayout //未登录布局
-    private lateinit var textLogin:TextView //点击去登陆
-    private lateinit var viewLoginIcon:CircleImageView //登陆头像
-    private lateinit var textLoginUsername :TextView //登陆用户名称
-    private lateinit var textLoginUserScore:TextView //登陆用户积分
-    private lateinit var imgLogout:TextView //退出登陆
-   private lateinit var imgToFavoritesPage:ImageView
+    private lateinit var layoutProFileLogin: RelativeLayout //登陆成功布局
+    private lateinit var layoutProfileNotLogin: RelativeLayout //未登录布局
+    private lateinit var textLogin: TextView //点击去登陆
+    private lateinit var viewLoginIcon: CircleImageView //登陆头像
+    private lateinit var textLoginUsername: TextView //登陆用户名称
+    private lateinit var textLoginUserScore: TextView //登陆用户积分
+    private lateinit var imgLogout: TextView //退出登陆
+    private lateinit var layoutProfilFavorites: RelativeLayout //去收藏页面
+    private lateinit var layoutProfileUpdate: RelativeLayout //去更新页面
+    private lateinit var layoutProfileSettings: RelativeLayout
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view:View =  inflater.inflate(R.layout.fragment_profile, container, false)
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
         initView(view)
         initListner()
 
@@ -42,26 +47,39 @@ class ProfileFragment :Fragment() {
             //跳转登陆fragment
 
 
-            requireActivity().supportFragmentManager.
-            beginTransaction().
-            setCustomAnimations(R.anim.slide_in_up, 0, 0, R.anim.slide_out_down).
-            add(android.R.id.content, LoginFragment(),"LoginFragment").addToBackStack(null).commit()
-
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_up, 0, 0, R.anim.slide_out_down)
+                .add(android.R.id.content, LoginFragment(), "LoginFragment").addToBackStack(null)
+                .commit()
 
 
         })
         imgLogout.setOnClickListener(View.OnClickListener {
-            isLogin =false
-            loginUser=null
-            cookies=null
+            isLogin = false
+            loginUser = null
+            cookies = null
             refreshLoginState()
-            Toast.makeText(context,"您已顺利退出登陆",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "您已顺利退出登陆", Toast.LENGTH_SHORT).show()
         })
-        imgToFavoritesPage.setOnClickListener({
+        layoutProfilFavorites.setOnClickListener({
 
+            requireActivity().supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(
+                    R.anim.slide_in_right, 0,
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
+                .add(android.R.id.content, FavoritesFragment(), "FavoritesFragment")
+                .addToBackStack(null)
+                .commit()
 
-
-
+        })
+        layoutProfileSettings.setOnClickListener({
+            Toast.makeText(requireContext(), "前面的区域，以后再来探索吧", Toast.LENGTH_SHORT).show()
+        })
+        layoutProfileUpdate.setOnClickListener({
+            Toast.makeText(requireContext(), "前面的区域，以后再来探索吧", Toast.LENGTH_SHORT).show()
         })
     }
 
@@ -71,10 +89,12 @@ class ProfileFragment :Fragment() {
         layoutProFileLogin.findViewById<CircleImageView>(R.id.login_icon)
         textLogin = view.findViewById<TextView>(R.id.login)
         viewLoginIcon = view.findViewById<CircleImageView>(R.id.login_icon)
-        textLoginUsername=view.findViewById<TextView>(R.id.login_username)
-        textLoginUserScore= view.findViewById<TextView>(R.id.user_socore)
+        textLoginUsername = view.findViewById<TextView>(R.id.login_username)
+        textLoginUserScore = view.findViewById<TextView>(R.id.user_socore)
         imgLogout = view.findViewById<TextView>(R.id.logout)
-       imgToFavoritesPage = view.findViewById<ImageView>(R.id.to_favorites_page)
+        layoutProfilFavorites = view.findViewById<RelativeLayout>(R.id.profile_favorites)
+        layoutProfileUpdate = view.findViewById<RelativeLayout>(R.id.profile_update)
+        layoutProfileSettings = view.findViewById<RelativeLayout>(R.id.profile_settings)
 
 
         //进入页面后判断是否登陆，选择显示内容，后期需要做登陆判断修改isLogin
@@ -82,34 +102,33 @@ class ProfileFragment :Fragment() {
         refreshLoginState()
 
     }
+
     /*
       刷新login和非login状态
      */
-     fun refreshLoginState()
-     {
+    fun refreshLoginState() {
 
-         if (isLogin == false) {
-             //未登录
-             layoutProFileLogin.visibility = View.GONE
-             layoutProfileNotLogin.visibility = View.VISIBLE
-         } else {
-             //已登陆
-             layoutProFileLogin.visibility = View.VISIBLE
-             layoutProfileNotLogin.visibility = View.GONE
+        if (isLogin == false) {
+            //未登录
+            layoutProFileLogin.visibility = View.GONE
+            layoutProfileNotLogin.visibility = View.VISIBLE
+        } else {
+            //已登陆
+            layoutProFileLogin.visibility = View.VISIBLE
+            layoutProfileNotLogin.visibility = View.GONE
 
 
-             //刷新登陆用户信息
-             layoutProFileLogin.visibility=View.VISIBLE
-             layoutProfileNotLogin.visibility=View.GONE
-            if(loginUser!=null)
-            {
+            //刷新登陆用户信息
+            layoutProFileLogin.visibility = View.VISIBLE
+            layoutProfileNotLogin.visibility = View.GONE
+            if (loginUser != null) {
                 viewLoginIcon.setImageResource(R.mipmap.user_avatar)
-                textLoginUsername.text= loginUser!!.nickname
-                textLoginUserScore.text ="积分：${loginUser!!.coinCount.toString()}"
+                textLoginUsername.text = loginUser!!.nickname
+                textLoginUserScore.text = "积分：${loginUser!!.coinCount.toString()}"
             }
 
-         }
-     }
+        }
+    }
 
 
 }

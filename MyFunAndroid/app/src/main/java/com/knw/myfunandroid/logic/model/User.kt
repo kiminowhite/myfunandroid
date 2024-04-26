@@ -10,9 +10,9 @@ data class LoginResponse(
 
 data class User(
     val admin: Boolean,
-    val chapterTops: List<Any>, // 如果有具体的数据结构，可以替换为对应的数据类
+    val chapterTops: List<Any>,
     val coinCount: Int,
-    val collectIds: List<Any>, // 如果有具体的数据结构，可以替换为对应的数据类
+    val collectIds: List<Int>,
     val email: String,
     val icon: String,
     val id: Int,

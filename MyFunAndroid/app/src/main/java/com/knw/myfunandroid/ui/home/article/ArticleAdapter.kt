@@ -14,57 +14,54 @@ import com.google.android.material.card.MaterialCardView
 import com.knw.myfunandroid.R
 import com.knw.myfunandroid.logic.model.Article
 
-class ArticleAdapter(private val fragment: Fragment, private val articleList: List<Article>)
-    :RecyclerView.Adapter<ArticleAdapter.ViewHolder>(){
+class ArticleAdapter(private val fragment: Fragment, private val articleList: List<Article>) :
+    RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val shareUser:TextView =view.findViewById<TextView>(R.id.share_user)
-        val niceDate:TextView =view.findViewById<TextView>(R.id.nice_date)
-        val title :TextView = view.findViewById<TextView>(R.id.title)
-        val superChapterName :TextView = view.findViewById<TextView>(R.id.super_chapter_name)
-        val zan:ImageView = view.findViewById<ImageView>(R.id.zan)
+        val shareUser: TextView = view.findViewById<TextView>(R.id.share_user)
+        val niceDate: TextView = view.findViewById<TextView>(R.id.nice_date)
+        val title: TextView = view.findViewById<TextView>(R.id.title)
+        val superChapterName: TextView = view.findViewById<TextView>(R.id.super_chapter_name)
+        val zan: ImageView = view.findViewById<ImageView>(R.id.zan)
         val card: MaterialCardView = view.findViewById<MaterialCardView>(R.id.card)
-         val topMark:ImageView = view.findViewById<ImageView>(R.id.top_mark)
+        val topMark: ImageView = view.findViewById<ImageView>(R.id.top_mark)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-       val view = LayoutInflater.from(parent.context).inflate(R.layout.home_article_item,parent,false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_home_article, parent, false)
         return ViewHolder(view)
     }
 
-    override fun getItemCount()=articleList.size
+    override fun getItemCount() = articleList.size
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val article =articleList[position]
-        if(article.shareUser!="")
-        {
-            holder.shareUser.text=article.shareUser
-        }else
-        {
-            holder.shareUser.text=article.author
+        val article = articleList[position]
+        if (article.shareUser != "") {
+            holder.shareUser.text = article.shareUser
+        } else {
+            holder.shareUser.text = article.author
         }
-        holder.niceDate.text=article.niceDate
-        holder.title.text=article.title
-        holder.superChapterName.text=article.superChapterName
-        if(article.type == 1 )
-        {
+        holder.niceDate.text = article.niceDate
+        holder.title.text = article.title
+        holder.superChapterName.text = article.superChapterName
+        if (article.type == 1) {
             //置顶文章 修改背景颜色,置顶图片
-            val color =ContextCompat.getColor(fragment.requireContext(), R.color.card_greyblue)
+            val color = ContextCompat.getColor(fragment.requireContext(), R.color.card_greyblue)
             holder.card.setCardBackgroundColor(color)
-            holder.topMark.visibility=View.VISIBLE
+            holder.topMark.visibility = View.VISIBLE
 
         }
-     if (article.type == 0)
-     {
-         val color =ContextCompat.getColor(fragment.requireContext(), R.color.white)
-         holder.card.setCardBackgroundColor(color)
-         holder.topMark.visibility=View.GONE
-     }
+        if (article.type == 0) {
+            val color = ContextCompat.getColor(fragment.requireContext(), R.color.white)
+            holder.card.setCardBackgroundColor(color)
+            holder.topMark.visibility = View.GONE
+        }
 
 
 
         holder.itemView.setOnClickListener({
-            Log.d("test",article.link.toString())
+            Log.d("test", article.link.toString())
 
 
             // 创建要跳转的 Fragment 实例，并将数据传递给它

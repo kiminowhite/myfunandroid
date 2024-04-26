@@ -14,24 +14,23 @@ class MainPageBottomItemView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : RelativeLayout(context, attrs, defStyleAttr)
-{
+) : RelativeLayout(context, attrs, defStyleAttr) {
 
 
-    private var onItemClickListener : OnItemClickListener? = null
-    private  var mItemTextName:String =""
-    private var  mItemIconDefaultResId :Int =-1
-    private var  mItemIconPressResId  :Int =-1
-    private var   mTextColorDefalut  :Int =-1
-    private var    mTextColorPress  :Int =-1
-    private var   mTextSize :Float=5f
+    private var onItemClickListener: OnItemClickListener? = null
+    private var mItemTextName: String = ""
+    private var mItemIconDefaultResId: Int = -1
+    private var mItemIconPressResId: Int = -1
+    private var mTextColorDefalut: Int = -1
+    private var mTextColorPress: Int = -1
+    private var mTextSize: Float = 5f
 
-    private lateinit var mItemIcon:ImageView
-    private lateinit var mItemName:TextView
+    private lateinit var mItemIcon: ImageView
+    private lateinit var mItemName: TextView
 
     init {
         val view = LayoutInflater.from(context)
-            .inflate(R.layout.view_main_page_bottom_item, this, true)
+            .inflate(R.layout.item_view_main_page_bottom, this, true)
         initAttrs(context, attrs)
         initView(view)
         initData(view)
@@ -39,7 +38,7 @@ class MainPageBottomItemView @JvmOverloads constructor(
 
     }
 
-    private fun initData(v:View) {
+    private fun initData(v: View) {
         mItemIcon.setImageResource(mItemIconDefaultResId)
         mItemName.setText(mItemTextName)
         mItemName.setTextColor(mTextColorDefalut)
@@ -47,14 +46,14 @@ class MainPageBottomItemView @JvmOverloads constructor(
 
         //将颜色和资源带出去，让Main执行ui更新
         v.setOnClickListener({
-           onItemClickListener?.onItemClick(v,mItemIconPressResId,mTextColorPress)
+            onItemClickListener?.onItemClick(v, mItemIconPressResId, mTextColorPress)
         })
 
     }
 
     private fun initView(view: View) {
         mItemIcon = view.findViewById(R.id.main_page_botton_item_icon)
-        mItemName =view.findViewById(R.id.main_page_botton_item_name)
+        mItemName = view.findViewById(R.id.main_page_botton_item_name)
     }
 
 
@@ -77,17 +76,19 @@ class MainPageBottomItemView @JvmOverloads constructor(
             typedArray.getColor(R.styleable.MainPageBottomItemView_text_color_defalut, -1)
         mTextColorPress =
             typedArray.getColor(R.styleable.MainPageBottomItemView_text_color_press, -1)
-        mTextSize=typedArray.getDimension(
+        mTextSize = typedArray.getDimension(
             R.styleable.MainPageBottomItemView_text_size,
-            SizeUtils.dip2px(20f).toFloat())
+            SizeUtils.dip2px(20f).toFloat()
+        )
         typedArray.recycle()
     }
-     interface  OnItemClickListener{
-      fun  onItemClick(v: View,mItemIconPressResId:Int,mTextColorPress:Int)
+
+    interface OnItemClickListener {
+        fun onItemClick(v: View, mItemIconPressResId: Int, mTextColorPress: Int)
 
     }
-   fun setOnItemClickListener(onItemClickListener: OnItemClickListener)
-   {
-       this.onItemClickListener = onItemClickListener
-   }
+
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.onItemClickListener = onItemClickListener
+    }
 }

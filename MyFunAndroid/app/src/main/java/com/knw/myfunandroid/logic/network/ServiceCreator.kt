@@ -6,8 +6,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ServiceCreator
-{
+object ServiceCreator {
     private const val BASE_URL = "https://www.wanandroid.com"
 
     private val client = OkHttpClient.Builder()
@@ -21,6 +20,7 @@ object ServiceCreator
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()
+
     fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
     inline fun <reified T> create(): T = create(T::class.java)
 }

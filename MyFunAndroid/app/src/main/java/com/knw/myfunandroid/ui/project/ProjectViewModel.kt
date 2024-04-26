@@ -8,31 +8,31 @@ import com.knw.myfunandroid.logic.model.ProjectArticle
 import com.knw.myfunandroid.logic.model.ProjectTreeItem
 import java.util.ArrayList
 
-class ProjectViewModel:ViewModel() {
+class ProjectViewModel : ViewModel() {
 
     private val treeLiveData = MutableLiveData<Unit>()
     private val pageLiveData = MutableLiveData<Int>()
     private val cidLiveData = MutableLiveData<Int>()
 
 
-    val projectTreeList=ArrayList<ProjectTreeItem>()
+    val projectTreeList = ArrayList<ProjectTreeItem>()
     val projectArticleList = ArrayList<ProjectArticle>()
 
     val projectTreeLiveData = treeLiveData.switchMap {
-        Repository.getProjectTree() }
-
-    val projectArticleLiveData= pageLiveData.switchMap {
-       page-> Repository.getProjectArticles(page,cidLiveData.value!!)
+        Repository.getProjectTree()
     }
 
-    fun getProjectTree()
-    {
-        treeLiveData.value=Unit
+    val projectArticleLiveData = pageLiveData.switchMap { page ->
+        Repository.getProjectArticles(page, cidLiveData.value!!)
     }
-    fun  getProjectArticles(page:Int,cid:Int,callback: () -> Unit)
-    {
-        pageLiveData.value =page
-        cidLiveData.value= cid
+
+    fun getProjectTree() {
+        treeLiveData.value = Unit
+    }
+
+    fun getProjectArticles(page: Int, cid: Int, callback: () -> Unit) {
+        pageLiveData.value = page
+        cidLiveData.value = cid
         callback()
     }
 }

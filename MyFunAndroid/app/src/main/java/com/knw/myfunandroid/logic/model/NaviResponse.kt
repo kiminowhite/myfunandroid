@@ -1,7 +1,7 @@
 package com.knw.myfunandroid.logic.model
 
 data class NaviTreeResponse(
-    val data : List<NaviTreeItem>,
+    val data: List<NaviTreeItem>,
     val errorCode: Int,
     val errorMsg: String
 )

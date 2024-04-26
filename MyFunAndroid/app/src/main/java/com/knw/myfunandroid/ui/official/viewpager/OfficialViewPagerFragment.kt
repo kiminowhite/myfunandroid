@@ -16,14 +16,15 @@ import com.knw.myfunandroid.ui.official.OfficialViewModel
 import com.knw.myfunandroid.ui.project.ProjectViewModel
 import com.knw.myfunandroid.ui.project.viewpager.ProjectViewPagerFragment
 
-class OfficialViewPagerFragment:Fragment() {
+class OfficialViewPagerFragment : Fragment() {
     val viewModel by lazy { ViewModelProvider(this).get(OfficialViewModel::class.java) }
     private lateinit var officialArticleAdapter: OfficialArticleAdapter
-    private lateinit var  officialArticleRecyclerView: RecyclerView
+    private lateinit var officialArticleRecyclerView: RecyclerView
 
     private var isLoading = false
 
-    private  var currentPage :Int =1 //从1开始
+    private var currentPage: Int = 1 //从1开始
+
     companion object {
         fun newInstance(value: Int): OfficialViewPagerFragment {
             val fragment = OfficialViewPagerFragment()
@@ -61,7 +62,7 @@ class OfficialViewPagerFragment:Fragment() {
                         isLoading = true
                         // 执行加载新数据的操作
                         Log.d("currentPage", currentPage.toString())
-                        viewModel.getOfficalArticles(arguments!!.getInt("aid"), ++currentPage  )
+                        viewModel.getOfficalArticles(arguments!!.getInt("aid"), ++currentPage)
                         {
                             // 加载完成后，重置标志
                             isLoading = false
@@ -74,7 +75,7 @@ class OfficialViewPagerFragment:Fragment() {
     }
 
     private fun initView(view: View) {
-    officialArticleRecyclerView = view.findViewById(R.id.official_recycleview)
+        officialArticleRecyclerView = view.findViewById(R.id.official_recycleview)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -84,15 +85,14 @@ class OfficialViewPagerFragment:Fragment() {
 
     private fun initOfficialArticles() {
         val layoutManager = LinearLayoutManager(activity)
-        officialArticleRecyclerView.layoutManager=layoutManager
-        officialArticleAdapter = OfficialArticleAdapter(this,viewModel.officialArticleList)
-        officialArticleRecyclerView.adapter=officialArticleAdapter
+        officialArticleRecyclerView.layoutManager = layoutManager
+        officialArticleAdapter = OfficialArticleAdapter(this, viewModel.officialArticleList)
+        officialArticleRecyclerView.adapter = officialArticleAdapter
         val aid = arguments?.getInt("aid")
 
-        if(!isLoading)
-        {
-            isLoading=true
-            viewModel.getOfficalArticles( aid!!,currentPage){
+        if (!isLoading) {
+            isLoading = true
+            viewModel.getOfficalArticles(aid!!, currentPage) {
                 // 加载完成后，重置标志
                 isLoading = false
             }
@@ -107,6 +107,6 @@ class OfficialViewPagerFragment:Fragment() {
                 Toast.makeText(activity, "未能查询到任何文章", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
-    })
-        }
+        })
+    }
 }

@@ -16,18 +16,19 @@ import com.knw.myfunandroid.ui.project.ProjectViewModel
 import kotlin.properties.Delegates
 
 
-class ProjectViewPagerFragment: Fragment(){
+class ProjectViewPagerFragment : Fragment() {
 
     val viewModel by lazy { ViewModelProvider(this).get(ProjectViewModel::class.java) }
 
-    private lateinit var  projectArticleAdapter: ProjectArticleAdapter
+    private lateinit var projectArticleAdapter: ProjectArticleAdapter
     private lateinit var projectArticleRecyclerView: RecyclerView
 
     private var isLoading = false
 
-    private  var currentPage :Int =1 //从1开始
+    private var currentPage: Int = 1 //从1开始
+
     companion object {
-        fun newInstance(value: Int):ProjectViewPagerFragment {
+        fun newInstance(value: Int): ProjectViewPagerFragment {
             val fragment = ProjectViewPagerFragment()
             val args = Bundle()
             args.putInt("cid", value)
@@ -41,7 +42,7 @@ class ProjectViewPagerFragment: Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_project_view_pager,container,false)
+        val view = inflater.inflate(R.layout.fragment_project_view_pager, container, false)
 
         initView(view)
         initListener()
@@ -95,10 +96,9 @@ class ProjectViewPagerFragment: Fragment(){
         // 在此处获取传递的值cid,获取第一页
         val cid = arguments?.getInt("cid")
         Log.d("cid", cid.toString())
-        if(!isLoading)
-        {
-            isLoading=true
-            viewModel.getProjectArticles(currentPage, cid!!){
+        if (!isLoading) {
+            isLoading = true
+            viewModel.getProjectArticles(currentPage, cid!!) {
                 // 加载完成后，重置标志
                 isLoading = false
             }

@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:id="@+id/main_bottom_layout"
-        android:background="@drawable/border_gray"
+        android:background="@drawable/shape_border_gray"
         android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -36,7 +36,7 @@
            knw:text_color_defalut="@color/text_grey"
            knw:item_icon_press="@mipmap/shouyei_press"
            knw:text_color_press ="@color/text_lightblue"
-           android:background="@drawable/bg_main_page_bottom_item"
+           android:background="@drawable/selector_bg_main_page_bottom_item"
            android:gravity="center"
            knw:text_size="4dp">
        </com.knw.myfunandroid.ui.customview.MainPageBottomItemView>
@@ -50,7 +50,7 @@
             knw:text_color_defalut="@color/text_grey"
             knw:item_icon_press="@mipmap/xiangmu_press"
             knw:text_color_press ="@color/text_lightblue"
-            android:background="@drawable/bg_main_page_bottom_item"
+            android:background="@drawable/selector_bg_main_page_bottom_item"
             knw:text_size="4dp">
         </com.knw.myfunandroid.ui.customview.MainPageBottomItemView>
 
@@ -63,7 +63,7 @@
             knw:item_icon_default="@mipmap/gongzhonghao"
             knw:text_color_defalut="@color/text_grey"
             knw:item_icon_press="@mipmap/gongzhonghao_press"
-            android:background="@drawable/bg_main_page_bottom_item"
+            android:background="@drawable/selector_bg_main_page_bottom_item"
             knw:text_color_press ="@color/text_lightblue"
             knw:text_size="4dp">
         </com.knw.myfunandroid.ui.customview.MainPageBottomItemView>
@@ -76,7 +76,7 @@
             knw:item_icon_default="@mipmap/tixi"
             knw:text_color_defalut="@color/text_grey"
             knw:item_icon_press="@mipmap/tixi_press"
-            android:background="@drawable/bg_main_page_bottom_item"
+            android:background="@drawable/selector_bg_main_page_bottom_item"
             knw:text_color_press ="@color/text_lightblue"
             knw:text_size="4dp">
         </com.knw.myfunandroid.ui.customview.MainPageBottomItemView>
@@ -89,7 +89,7 @@
             knw:item_icon_default="@mipmap/wode"
             knw:text_color_defalut="@color/text_grey"
             knw:item_icon_press="@mipmap/wode_press"
-            android:background="@drawable/bg_main_page_bottom_item"
+            android:background="@drawable/selector_bg_main_page_bottom_item"
             knw:text_color_press ="@color/text_lightblue"
             knw:text_size="4dp">
         </com.knw.myfunandroid.ui.customview.MainPageBottomItemView>

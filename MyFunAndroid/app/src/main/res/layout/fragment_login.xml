@@ -57,6 +57,7 @@
                 android:id="@+id/edit_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:hint="用户名" />
 
             <EditText
@@ -65,6 +66,7 @@
                 android:drawablePadding="10dp"
                 android:id="@+id/edit_password"
                 android:layout_width="match_parent"
+                android:singleLine="true"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="密码"
@@ -120,8 +122,8 @@
 
         <TextView
             android:id="@+id/sign_in_whth_des"
-            android:drawableLeft="@drawable/shortline"
-            android:drawableRight="@drawable/shortline"
+            android:drawableLeft="@drawable/shape_shortline"
+            android:drawableRight="@drawable/shape_shortline"
             android:drawablePadding="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

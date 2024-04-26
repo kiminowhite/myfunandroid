@@ -6,6 +6,7 @@ data class ProjectTreeResponse(
     val errorCode: Int,
     val errorMsg: String
 )
+
 data class ProjectTreeItem(
     val articleList: List<Any>,
     val author: String,
@@ -23,6 +24,7 @@ data class ProjectTreeItem(
     val userControlSetTop: Boolean,
     val visible: Int
 )
+
 //列表文章
 data class ProjectResponse(
     val data: ProjectArticleData,

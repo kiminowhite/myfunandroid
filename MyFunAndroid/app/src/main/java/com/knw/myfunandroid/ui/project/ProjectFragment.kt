@@ -20,18 +20,15 @@ import com.knw.myfunandroid.logic.model.ProjectTreeItem
 import com.knw.myfunandroid.ui.project.viewpager.ProjectViewPagerFragment
 
 
-
-class ProjectFragment :Fragment() {
+class ProjectFragment : Fragment() {
 
     val viewModel by lazy { ViewModelProvider(this).get(ProjectViewModel::class.java) }
 
 
-
-   private lateinit var tabLayout :TabLayout
-   private lateinit var viewPager: ViewPager2
-   private lateinit var projectTreeIds: List<Int>
-    private lateinit var projectTreeTitles :List<String>
-
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: ViewPager2
+    private lateinit var projectTreeIds: List<Int>
+    private lateinit var projectTreeTitles: List<String>
 
 
     override fun onCreateView(
@@ -39,7 +36,7 @@ class ProjectFragment :Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_project,container,false)
+        val view = inflater.inflate(R.layout.fragment_project, container, false)
         initView(view)
 
 
@@ -47,7 +44,7 @@ class ProjectFragment :Fragment() {
     }
 
     private fun initView(view: View) {
-        tabLayout=view.findViewById(R.id.project_tab_layout)
+        tabLayout = view.findViewById(R.id.project_tab_layout)
         viewPager = view.findViewById(R.id.project_view_pager)
 
 
@@ -60,23 +57,22 @@ class ProjectFragment :Fragment() {
 
     private fun initProjectTree() {
         viewModel.getProjectTree()
-        viewModel.projectTreeLiveData.observe(viewLifecycleOwner,Observer{
-            result->
+        viewModel.projectTreeLiveData.observe(viewLifecycleOwner, Observer { result ->
             //拿到所有元素
-           val projectTreeItems: List<ProjectTreeItem>? = result.getOrNull()
-           // Log.d("test",projectTreeItems.toString())
+            val projectTreeItems: List<ProjectTreeItem>? = result.getOrNull()
+            // Log.d("test",projectTreeItems.toString())
             //拿到内部的title
             val projectNames: List<String> = projectTreeItems!!.map { it.name }
             projectTreeTitles = projectNames
             //拿到内部的id
-            val projectIds :List<Int> = projectTreeItems!!.map { it.id }
+            val projectIds: List<Int> = projectTreeItems!!.map { it.id }
             projectTreeIds = projectIds
-            Log.d("test",projectTreeTitles.toString())
-            Log.d("test",projectTreeIds.toString())
+            Log.d("test", projectTreeTitles.toString())
+            Log.d("test", projectTreeIds.toString())
 
 
 
-            viewPager.adapter= MyPagerAdapter(requireActivity(),projectTreeIds)
+            viewPager.adapter = MyPagerAdapter(requireActivity(), projectTreeIds)
             // TabLayout与ViewPager2绑定
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 //上方文本和集合对应
@@ -84,15 +80,13 @@ class ProjectFragment :Fragment() {
             }.attach()
 
 
-
-
         })
     }
+
     class MyPagerAdapter(
         fragmentActivity: FragmentActivity,
-        private val projectTreeIds:List<Int>
+        private val projectTreeIds: List<Int>
     ) : FragmentStateAdapter(fragmentActivity) {
-
 
 
         override fun getItemCount(): Int {
@@ -100,16 +94,12 @@ class ProjectFragment :Fragment() {
         }
 
         override fun createFragment(position: Int): Fragment {
-            Log.d("position",position.toString())
-            Log.d("position",projectTreeIds[position].toString())
+            Log.d("position", position.toString())
+            Log.d("position", projectTreeIds[position].toString())
             return ProjectViewPagerFragment.newInstance(projectTreeIds[position])
         }
     }
 }
-
-
-
-
 
 
 /*

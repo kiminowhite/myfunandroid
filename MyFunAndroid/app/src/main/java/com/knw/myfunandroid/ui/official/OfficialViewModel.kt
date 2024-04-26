@@ -10,7 +10,7 @@ import com.knw.myfunandroid.logic.model.OfficialChapterItem
 
 class OfficialViewModel : ViewModel() {
     private val officlChaptersLiveData = MutableLiveData<Unit>()
-            val officialChaptersList = ArrayList<OfficialChapterItem>()
+    val officialChaptersList = ArrayList<OfficialChapterItem>()
 
     private val pageLiveData = MutableLiveData<Int>()
     private val aidLiveData = MutableLiveData<Int>()
@@ -19,22 +19,21 @@ class OfficialViewModel : ViewModel() {
     val officialArticleList = ArrayList<OfficialArticle>()
 
 
-    val officialChapterAuthorLiveData =officlChaptersLiveData.switchMap {
+    val officialChapterAuthorLiveData = officlChaptersLiveData.switchMap {
         Repository.getOfficialChapters()
     }
-            fun getOfficialChapters()
-            {
-                officlChaptersLiveData.value=Unit
-            }
 
-    val officialArticleLiveData = pageLiveData.switchMap {
-        page->Repository.getOffcialArticles(aidLiveData.value!!,page)
+    fun getOfficialChapters() {
+        officlChaptersLiveData.value = Unit
     }
 
-    fun getOfficalArticles(aid:Int,page:Int,callback: () -> Unit)
-    {
-        aidLiveData.value=aid
-        pageLiveData.value=page
+    val officialArticleLiveData = pageLiveData.switchMap { page ->
+        Repository.getOffcialArticles(aidLiveData.value!!, page)
+    }
+
+    fun getOfficalArticles(aid: Int, page: Int, callback: () -> Unit) {
+        aidLiveData.value = aid
+        pageLiveData.value = page
         callback()
     }
 

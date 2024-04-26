@@ -13,42 +13,43 @@ import com.knw.myfunandroid.logic.model.Article
 import com.knw.myfunandroid.logic.model.OfficialArticle
 import com.knw.myfunandroid.ui.home.article.ArticleInformationFragment
 
-class OfficialArticleAdapter(private val fragment: Fragment, private val officialArticleList: List<OfficialArticle>)
-    : RecyclerView.Adapter<OfficialArticleAdapter.ViewHolder>(){
+class OfficialArticleAdapter(
+    private val fragment: Fragment,
+    private val officialArticleList: List<OfficialArticle>
+) : RecyclerView.Adapter<OfficialArticleAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val shareUser: TextView =view.findViewById<TextView>(R.id.share_user)
-        val niceDate: TextView =view.findViewById<TextView>(R.id.nice_date)
-        val title : TextView = view.findViewById<TextView>(R.id.title)
-        val superChapterName : TextView = view.findViewById<TextView>(R.id.super_chapter_name)
+        val shareUser: TextView = view.findViewById<TextView>(R.id.share_user)
+        val niceDate: TextView = view.findViewById<TextView>(R.id.nice_date)
+        val title: TextView = view.findViewById<TextView>(R.id.title)
+        val superChapterName: TextView = view.findViewById<TextView>(R.id.super_chapter_name)
         val zan: ImageView = view.findViewById<ImageView>(R.id.zan)
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.official_article_item,parent,false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_official_article, parent, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount() = officialArticleList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-      val officialArticle = officialArticleList[position]
-        if(officialArticle.shareUser!="")
-        {
-            holder.shareUser.text=officialArticle.shareUser
-        }else
-        {
-            holder.shareUser.text=officialArticle.author
+        val officialArticle = officialArticleList[position]
+        if (officialArticle.shareUser != "") {
+            holder.shareUser.text = officialArticle.shareUser
+        } else {
+            holder.shareUser.text = officialArticle.author
         }
-        holder.niceDate.text=officialArticle.niceDate
-        holder.title.text=officialArticle.title
-        holder.superChapterName.text=officialArticle.superChapterName
+        holder.niceDate.text = officialArticle.niceDate
+        holder.title.text = officialArticle.title
+        holder.superChapterName.text = officialArticle.superChapterName
 
         holder.itemView.setOnClickListener({
             // 创建要跳转的 Fragment 实例，并将数据传递给它
             val articleInfoFragment = ArticleInformationFragment().apply {
-                var article = getArticle(officialArticle.title,officialArticle.link)
+                var article = getArticle(officialArticle.title, officialArticle.link)
                 arguments = Bundle().apply {
                     putSerializable("article", article)
                 }

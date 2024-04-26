@@ -7,15 +7,15 @@ import com.knw.myfunandroid.logic.Repository
 import com.knw.myfunandroid.logic.model.SystemTreeItem
 
 
-class SystemViewModel :ViewModel(){
+class SystemViewModel : ViewModel() {
     private val treeLiveData = MutableLiveData<Unit>()
 
     val systemTreeItemList = ArrayList<SystemTreeItem>()
-    val systemTreeLiveData =treeLiveData.switchMap {
+    val systemTreeLiveData = treeLiveData.switchMap {
         Repository.getSystemTree()
     }
-    fun getSystemTree()
-    {
-        treeLiveData.value=Unit
+
+    fun getSystemTree() {
+        treeLiveData.value = Unit
     }
 }

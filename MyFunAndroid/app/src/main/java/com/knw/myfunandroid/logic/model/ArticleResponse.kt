@@ -5,60 +5,61 @@ import java.io.Serializable
 
 
 data class ArticleResponse(
-    @SerializedName("data") val data: ArticleData,
-    @SerializedName("errorCode") val errorCode: Int,
-    @SerializedName("errorMsg") val errorMsg: String
+    val data: ArticleData,
+    val errorCode: Int,
+    val errorMsg: String
 )
+
 data class TopArticleResponse(
-    @SerializedName("data") val articles: List<Article>,
-    @SerializedName("errorCode") val errorCode: Int,
-    @SerializedName("errorMsg") val errorMsg: String
+    val data: List<Article>,
+    val errorCode: Int,
+    val errorMsg: String
 )
 
 data class ArticleData(
-    @SerializedName("curPage") val curPage: Int,
-    @SerializedName("datas") val articles: List<Article>,
-    @SerializedName("offset") val offset: Int,
-    @SerializedName("over") val over: Boolean,
-    @SerializedName("pageCount") val pageCount: Int,
-    @SerializedName("size") val size: Int,
-    @SerializedName("total") val total: Int
+    val curPage: Int,
+    val datas: List<Article>,
+    val offset: Int,
+    val over: Boolean,
+    val pageCount: Int,
+    val size: Int,
+    val total: Int
 )
 
 data class Article(
-    @SerializedName("adminAdd") val adminAdd: Boolean,
-    @SerializedName("apkLink") val apkLink: String,
-    @SerializedName("audit") val audit: Int,
-    @SerializedName("author") val author: String,
-    @SerializedName("canEdit") val canEdit: Boolean,
-    @SerializedName("chapterId") val chapterId: Int,
-    @SerializedName("chapterName") val chapterName: String,
-    @SerializedName("collect") val collect: Boolean,
-    @SerializedName("courseId") val courseId: Int,
-    @SerializedName("desc") val desc: String,
-    @SerializedName("descMd") val descMd: String,
-    @SerializedName("envelopePic") val envelopePic: String,
-    @SerializedName("fresh") val fresh: Boolean,
-    @SerializedName("host") val host: String,
-    @SerializedName("id") val id: Int,
-    @SerializedName("isAdminAdd") val isAdminAdd: Boolean,
-    @SerializedName("link") val link: String,
-    @SerializedName("niceDate") val niceDate: String,
-    @SerializedName("niceShareDate") val niceShareDate: String,
-    @SerializedName("origin") val origin: String,
-    @SerializedName("prefix") val prefix: String,
-    @SerializedName("projectLink") val projectLink: String,
-    @SerializedName("publishTime") val publishTime: Long,
-    @SerializedName("realSuperChapterId") val realSuperChapterId: Int,
-    @SerializedName("selfVisible") val selfVisible: Int,
-    @SerializedName("shareDate") val shareDate: Long,
-    @SerializedName("shareUser") val shareUser: String,
-    @SerializedName("superChapterId") val superChapterId: Int,
-    @SerializedName("superChapterName") val superChapterName: String,
-    @SerializedName("tags") val tags: List<Any>,
-    @SerializedName("title") val title: String,
-    @SerializedName("type") val type: Int,
-    @SerializedName("userId") val userId: Int,
-    @SerializedName("visible") val visible: Int,
-    @SerializedName("zan") val zan: Int
-): Serializable
+    val adminAdd: Boolean,
+    val apkLink: String,
+    val audit: Int,
+    val author: String,
+    val canEdit: Boolean,
+    val chapterId: Int,
+    val chapterName: String,
+    val collect: Boolean,
+    val courseId: Int,
+    val desc: String,
+    val descMd: String,
+    val envelopePic: String,
+    val fresh: Boolean,
+    val host: String,
+    val id: Int,
+    val isAdminAdd: Boolean,
+    val link: String,
+    val niceDate: String,
+    val niceShareDate: String,
+    val origin: String,
+    val prefix: String,
+    val projectLink: String,
+    val publishTime: Long,
+    val realSuperChapterId: Int,
+    val selfVisible: Int,
+    val shareDate: Long,
+    val shareUser: String,
+    val superChapterId: Int,
+    val superChapterName: String,
+    val tags: List<Any>,
+    val title: String,
+    val type: Int,
+    val userId: Int,
+    val visible: Int,
+    val zan: Int
+) : Serializable

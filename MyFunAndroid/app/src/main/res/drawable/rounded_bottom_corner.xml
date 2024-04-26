@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/rounded_corner" /> <!-- 圆角矩形作为背景 -->
-    <item android:drawable="@drawable/bottom_clip" /> <!-- 覆盖在上半部分的矩形 -->
+    <item android:drawable="@drawable/shape_rounded_corner" /> <!-- 圆角矩形作为背景 -->
+    <item android:drawable="@drawable/shape_bottom_clip" /> <!-- 覆盖在上半部分的矩形 -->
 </layer-list>

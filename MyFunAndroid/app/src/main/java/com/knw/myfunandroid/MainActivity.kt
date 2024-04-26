@@ -20,12 +20,12 @@ import com.knw.myfunandroid.ui.project.ProjectFragment
 import com.knw.myfunandroid.ui.system.SystemFragment
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var  home: MainPageBottomItemView
-    private lateinit var  project: MainPageBottomItemView
-    private lateinit var  official: MainPageBottomItemView
-    private lateinit var  system: MainPageBottomItemView
-    private lateinit var  profile: MainPageBottomItemView
-    private lateinit var  mainFragmentContainer :FrameLayout
+    private lateinit var home: MainPageBottomItemView
+    private lateinit var project: MainPageBottomItemView
+    private lateinit var official: MainPageBottomItemView
+    private lateinit var system: MainPageBottomItemView
+    private lateinit var profile: MainPageBottomItemView
+    private lateinit var mainFragmentContainer: FrameLayout
 
     private var selectedView: MainPageBottomItemView? = null
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       val layout:RelativeLayout= findViewById(R.id.main)
+        val layout: RelativeLayout = findViewById(R.id.main)
 
         ViewCompat.setOnApplyWindowInsetsListener(layout) { v, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
             // only the bottom, left, and right dimensions, but you can apply whichever
             // insets are appropriate to your layout. You can also update the view padding
             // if that's more appropriate.
-          val params =  v.layoutParams as FrameLayout.LayoutParams
-             params.bottomMargin =insets.bottom
+            val params = v.layoutParams as FrameLayout.LayoutParams
+            params.bottomMargin = insets.bottom
 
             // Return CONSUMED if you don't want want the window insets to keep passing
             // down to descendant views.
@@ -66,8 +66,8 @@ class MainActivity : AppCompatActivity() {
     private fun initClickListener() {
         home.setOnItemClickListener(object : MainPageBottomItemView.OnItemClickListener {
             override fun onItemClick(v: View, mItemIconPressResId: Int, mTextColorPress: Int) {
-         onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
-                replaceFragment(HomeFragment(),"HomeFragment")
+                onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
+                replaceFragment(HomeFragment(), "HomeFragment")
 
             }
         })
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClick(v: View, mItemIconPressResId: Int, mTextColorPress: Int) {
 
                 onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
-                replaceFragment(ProjectFragment(),"ProjectFragment")
+                replaceFragment(ProjectFragment(), "ProjectFragment")
 
             }
         })
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClick(v: View, mItemIconPressResId: Int, mTextColorPress: Int) {
 
                 onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
-                replaceFragment(OfficialFragment(),"OfficialFragment")
+                replaceFragment(OfficialFragment(), "OfficialFragment")
 
             }
         })
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClick(v: View, mItemIconPressResId: Int, mTextColorPress: Int) {
 
                 onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
-                replaceFragment(SystemFragment(),"SystemFragment")
+                replaceFragment(SystemFragment(), "SystemFragment")
 
             }
         })
@@ -100,19 +100,19 @@ class MainActivity : AppCompatActivity() {
 
 
                 onItemClickStyleChange(v, mItemIconPressResId, mTextColorPress)
-                replaceFragment(ProfileFragment(),"ProfileFragment")
+                replaceFragment(ProfileFragment(), "ProfileFragment")
 
             }
         })
     }
 
-    private fun  initView() {
+    private fun initView() {
         home = findViewById<MainPageBottomItemView>(R.id.home)
         project = findViewById<MainPageBottomItemView>(R.id.project)
         official = findViewById<MainPageBottomItemView>(R.id.official_accounts)
         system = findViewById<MainPageBottomItemView>(R.id.system)
         profile = findViewById<MainPageBottomItemView>(R.id.profile)
-        mainFragmentContainer= findViewById<FrameLayout>(R.id.main_fragment_container);
+        mainFragmentContainer = findViewById<FrameLayout>(R.id.main_fragment_container);
 
 
     }

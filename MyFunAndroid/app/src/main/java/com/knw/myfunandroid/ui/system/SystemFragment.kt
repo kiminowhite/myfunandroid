@@ -11,26 +11,26 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.knw.myfunandroid.R
-import com.knw.myfunandroid.ui.system.viewpager.NaviViewPagerFragment
-import com.knw.myfunandroid.ui.system.viewpager.SystemViewPagerFragment
+import com.knw.myfunandroid.ui.system.viewpager.navi.NaviViewPagerFragment
+import com.knw.myfunandroid.ui.system.viewpager.sys.SystemViewPagerFragment
 
 
-class SystemFragment:Fragment() {
+class SystemFragment : Fragment() {
     private val listFragments: ArrayList<Fragment> = ArrayList()
     private val title = arrayOf("体系", "导航")
-    private lateinit var viewPager :ViewPager2
+    private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view :View = inflater.inflate(R.layout.fragment_system,container,false)
+        val view: View = inflater.inflate(R.layout.fragment_system, container, false)
         initView(view)
 
         listFragments.add(SystemViewPagerFragment())
         listFragments.add(NaviViewPagerFragment())
-        viewPager.adapter=MyPagerAdapter(requireActivity(),listFragments)
+        viewPager.adapter = MyPagerAdapter(requireActivity(), listFragments)
 
         // TabLayout与ViewPager2绑定
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
@@ -38,16 +38,16 @@ class SystemFragment:Fragment() {
             tab.text = title[position]
         }.attach()
 
-   // 监听选中的下标
-   // tabLayout.addOnTabSelectedListener()
+        // 监听选中的下标
+        // tabLayout.addOnTabSelectedListener()
 
 
         return view
     }
 
     private fun initView(view: View) {
-        tabLayout=view.findViewById(R.id.system_tab_layout)
-        viewPager=view.findViewById(R.id.system_view_pager)
+        tabLayout = view.findViewById(R.id.system_tab_layout)
+        viewPager = view.findViewById(R.id.system_view_pager)
 
     }
 

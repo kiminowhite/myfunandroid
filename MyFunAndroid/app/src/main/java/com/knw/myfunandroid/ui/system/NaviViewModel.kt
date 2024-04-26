@@ -6,15 +6,15 @@ import androidx.lifecycle.switchMap
 import com.knw.myfunandroid.logic.Repository
 import com.knw.myfunandroid.logic.model.NaviTreeItem
 
-class NaviViewModel :ViewModel() {
+class NaviViewModel : ViewModel() {
     private val treeLiveData = MutableLiveData<Unit>()
 
     val naviTreeItemList = ArrayList<NaviTreeItem>()
-    val naviTreeLiveData =treeLiveData.switchMap {
+    val naviTreeLiveData = treeLiveData.switchMap {
         Repository.getNaviTree()
     }
-    fun getNaviTree()
-    {
-        treeLiveData.value=Unit
+
+    fun getNaviTree() {
+        treeLiveData.value = Unit
     }
 }

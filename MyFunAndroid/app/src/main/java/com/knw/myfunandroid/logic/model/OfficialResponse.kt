@@ -28,7 +28,7 @@ data class OfficialChapterItem(
 
 data class OfficialResponse(
     val data: OfficialArticleData,
-   val errorCode: Int,
+    val errorCode: Int,
     val errorMsg: String
 )
 

@@ -20,41 +20,41 @@ import androidx.fragment.app.Fragment
 import com.knw.myfunandroid.R
 import com.knw.myfunandroid.logic.model.Article
 
-class ArticleInformationFragment :Fragment() {
-    private lateinit var  imgArticleInfoBack:ImageView
-    private lateinit var textArticleInfoTitle:TextView
-    private lateinit var imgArticleInfoNet :ImageView
-    private lateinit var imgArticleInfoMore:ImageView
-    private lateinit var webViewArticleInfoDetails:WebView
-    private lateinit var imgArticleInfoDetailsBack:ImageView
-    private lateinit var imgArticleInfoDetailsForward :ImageView
-    private lateinit var imgArticleInfoDetailsRefresh :ImageView
-    private lateinit var imgArticleInfoDetailsZan:ImageView
+class ArticleInformationFragment : Fragment() {
+    private lateinit var imgArticleInfoBack: ImageView
+    private lateinit var textArticleInfoTitle: TextView
+    private lateinit var imgArticleInfoNet: ImageView
+    private lateinit var imgArticleInfoMore: ImageView
+    private lateinit var webViewArticleInfoDetails: WebView
+    private lateinit var imgArticleInfoDetailsBack: ImageView
+    private lateinit var imgArticleInfoDetailsForward: ImageView
+    private lateinit var imgArticleInfoDetailsRefresh: ImageView
+    private lateinit var imgArticleInfoDetailsZan: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view :View  = inflater.inflate(R.layout.fragment_article_info,container,false)
+        val view: View = inflater.inflate(R.layout.fragment_article_info, container, false)
         // 获取传递的 Article 对象
-        val  article = arguments?.getSerializable("article") as? Article
+        val article = arguments?.getSerializable("article") as? Article
 
-        val layout =  view.findViewById<LinearLayout>(R.id.article_info_layout)
+        val layout = view.findViewById<LinearLayout>(R.id.article_info_layout)
         ViewCompat.setOnApplyWindowInsetsListener(layout) { v, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
             // Apply the insets as a margin to the view. This solution sets
             // only the bottom, left, and right dimensions, but you can apply whichever
             // insets are appropriate to your layout. You can also update the view padding
             // if that's more appropriate.
-            val params =  v.layoutParams as FrameLayout.LayoutParams
-            params.bottomMargin =insets.bottom
+            val params = v.layoutParams as FrameLayout.LayoutParams
+            params.bottomMargin = insets.bottom
 
             // Return CONSUMED if you don't want want the window insets to keep passing
             // down to descendant views.
             WindowInsetsCompat.CONSUMED
         }
-        initView(view,article)
+        initView(view, article)
         initListener(article)
         return view
     }
@@ -97,9 +97,9 @@ class ArticleInformationFragment :Fragment() {
         imgArticleInfoBack = view.findViewById<ImageView>(R.id.article_info_back)
 
         textArticleInfoTitle = view.findViewById<TextView>(R.id.article_info_titile)
-        textArticleInfoTitle.text=article?.title
+        textArticleInfoTitle.text = article?.title
 
-        imgArticleInfoNet =view.findViewById<ImageView>(R.id.article_info_net)
+        imgArticleInfoNet = view.findViewById<ImageView>(R.id.article_info_net)
 
         imgArticleInfoMore = view.findViewById<ImageView>(R.id.article_info_more)
 
@@ -111,9 +111,11 @@ class ArticleInformationFragment :Fragment() {
 
         imgArticleInfoDetailsBack = view.findViewById<ImageView>(R.id.article_info_details_back)
 
-        imgArticleInfoDetailsForward = view.findViewById<ImageView>(R.id.article_info_details_forward)
+        imgArticleInfoDetailsForward =
+            view.findViewById<ImageView>(R.id.article_info_details_forward)
 
-        imgArticleInfoDetailsRefresh = view.findViewById<ImageView>(R.id.article_info_details_refresh)
+        imgArticleInfoDetailsRefresh =
+            view.findViewById<ImageView>(R.id.article_info_details_refresh)
 
         imgArticleInfoDetailsZan = view.findViewById<ImageView>(R.id.article_info_details_zan)
 
