@@ -15,12 +15,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.knw.myfunandroid.R
 import com.knw.myfunandroid.logic.model.ImgItem
 import com.knw.myfunandroid.logic.utils.NetworkUtils
 import com.knw.myfunandroid.ui.home.article.ArticleAdapter
 import com.knw.myfunandroid.ui.home.article.ArticleViewModel
 import com.knw.myfunandroid.ui.home.banner.BannerViewModel
+import com.knw.myfunandroid.ui.home.search.SearchFragment
 import com.knw.myfunandroid.ui.home.viewpager.HomeViewPagerAdapter
 
 
@@ -33,6 +35,7 @@ class HomeFragment : Fragment() {
     private var currentPage: Int = 0
     private lateinit var articleAdapter: ArticleAdapter
     private lateinit var articleRecyclerView: RecyclerView
+    private lateinit var buttonSearch :FloatingActionButton
 
     private lateinit var viewPager: ViewPager2
     private lateinit var homeViewPagerAdapter: HomeViewPagerAdapter
@@ -85,6 +88,13 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+        buttonSearch.setOnClickListener({
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.fade_in,R.anim.fade_out)
+                .add(android.R.id.content, SearchFragment(), "SearchFragment").addToBackStack(null)
+                .commit()
+        })
 
 
 
@@ -93,6 +103,7 @@ class HomeFragment : Fragment() {
     private fun initView(view: View) {
         articleRecyclerView = view.findViewById(R.id.article_recycleview)
         viewPager = view.findViewById<ViewPager2>(R.id.home_view_pager)
+        buttonSearch = view.findViewById<FloatingActionButton>(R.id.search_button)
 
     }
 

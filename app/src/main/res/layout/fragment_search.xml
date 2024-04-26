@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true">
+
+   <RelativeLayout
+       android:id="@+id/search_bar"
+       android:layout_width="match_parent"
+       android:layout_height="120dp">
+       <ImageView
+           android:id="@+id/search_bar_back"
+
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="15dp"
+           android:layout_marginBottom="20dp"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentBottom="true"
+           android:src="@drawable/img_fanhui"></ImageView>
+       <EditText
+           android:id="@+id/search_bar_edit"
+           android:layout_toRightOf="@+id/search_bar_back"
+           android:layout_alignParentBottom="true"
+          android:layout_centerVertical="true"
+           android:layout_width="300dp"
+           android:layout_marginLeft="20dp"
+           android:layout_marginBottom="5dp"
+           android:textColorHint="@color/text_grey"
+           android:hint="搜索"
+
+           android:layout_height="wrap_content"></EditText>
+       <ImageView
+           android:id="@+id/search_bar_clear"
+           android:layout_alignParentRight="true"
+           android:layout_alignParentBottom="true"
+           android:layout_marginRight="15dp"
+           android:layout_marginBottom="20dp"
+
+           android:src="@drawable/img_guanbi"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"></ImageView>
+   </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/search_hot"
+        android:layout_below="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/search_hot_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_alignParentLeft="true"
+            android:text="热门搜索"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/search_hot_reload"
+            android:drawableLeft="@drawable/img_huanyihuan"
+            android:drawablePadding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/text_grey"
+            android:text="换一换">
+        </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_hot_recyleview"
+            android:layout_below="@id/search_hot_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/search_history"
+        android:layout_below="@+id/search_hot"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/search_history_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_alignParentLeft="true"
+            android:text="历史搜索"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/search_history_clear"
+            android:drawableLeft="@drawable/img_qingkong"
+            android:drawablePadding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/text_grey"
+            android:text="清空">
+        </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_history_recyleview"
+            android:layout_below="@id/search_history_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+</RelativeLayout>

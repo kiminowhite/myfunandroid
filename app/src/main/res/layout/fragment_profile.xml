@@ -105,9 +105,10 @@
            android:id="@+id/xihuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/xihuan"></ImageView>
+            android:src="@drawable/img_xihuan"></ImageView>
         <TextView
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/xihuan"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -123,7 +124,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/jiantou_liebiaoxiangyou"></ImageView>
+            android:src="@drawable/img_xiangyou"></ImageView>
 
     </RelativeLayout>
     <RelativeLayout
@@ -139,9 +140,10 @@
             android:paddingLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/shezhi"></ImageView>
+            android:src="@drawable/img_shezhi"></ImageView>
         <TextView
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/shezhi"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -158,7 +160,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/jiantou_liebiaoxiangyou"></ImageView>
+            android:src="@drawable/img_xiangyou"></ImageView>
 
 
     </RelativeLayout>
@@ -176,9 +178,10 @@
             android:paddingLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/jianchagengxin"></ImageView>
+            android:src="@drawable/img_jianchagengxin"></ImageView>
         <TextView
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/jianchagengxin"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -194,7 +197,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/jiantou_liebiaoxiangyou"></ImageView>
+            android:src="@drawable/img_xiangyou"></ImageView>
 
 
     </RelativeLayout>

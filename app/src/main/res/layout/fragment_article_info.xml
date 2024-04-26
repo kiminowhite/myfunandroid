@@ -16,7 +16,7 @@
         android:background="@color/text_lightblue">
       <ImageView
           android:id="@+id/article_info_back"
-          android:src="@mipmap/jiantou_xiangzuo_wenzhang"
+          android:src="@drawable/img_xiangzuo_chang"
           android:layout_alignParentBottom="true"
           android:padding="20dp"
           android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
             android:text="ペルソナ３ーリーロド" />
         <ImageView
             android:id="@+id/article_info_net"
-            android:src="@mipmap/wangluo"
+            android:src="@drawable/img_wangluo"
             android:layout_toRightOf="@id/article_info_titile"
             android:layout_alignParentBottom="true"
             android:padding="25dp"
@@ -49,7 +49,7 @@
         </ImageView>
         <ImageView
             android:id="@+id/article_info_more"
-            android:src="@mipmap/gengduo"
+            android:src="@drawable/img_gengduo"
             android:layout_toRightOf="@id/article_info_net"
             android:layout_alignParentBottom="true"
             android:padding="20dp"
@@ -86,20 +86,20 @@
                android:layout_weight="1"
                android:layout_width="0dp"
                android:padding="16dp"
-               android:src="@mipmap/jiantou_zuo_wenzhang"
+               android:src="@drawable/img_xiangzuo1"
                android:layout_height="match_parent"></ImageView>
            <ImageView
                android:id="@+id/article_info_details_forward"
                android:layout_weight="1"
                android:layout_width="0dp"
                android:padding="16dp"
-               android:src="@mipmap/jiantou_you_wenzhang"
+               android:src="@drawable/img_xiangyou1"
                android:layout_height="match_parent"></ImageView>
            <ImageView
                android:id="@+id/article_info_details_refresh"
                android:layout_weight="1"
                android:layout_width="0dp"
-               android:src="@mipmap/shuaxin"
+               android:src="@drawable/img_huanyihuan"
                android:padding="16dp"
                android:layout_height="match_parent"></ImageView>
            <ImageView
@@ -107,7 +107,7 @@
                android:layout_weight="1"
                android:layout_width="0dp"
                android:padding="16dp"
-               android:src="@mipmap/xihuan_wenzhang"
+               android:src="@drawable/img_xihuan_fen"
                android:layout_height="match_parent"></ImageView>
        </LinearLayout>
     </RelativeLayout>

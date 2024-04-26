@@ -16,7 +16,7 @@
         android:background="@color/text_lightblue">
         <ImageView
             android:id="@+id/favorite_page_back"
-            android:src="@mipmap/jiantou_xiangzuo_wenzhang"
+            android:src="@drawable/img_xiangzuo_chang"
             android:layout_alignParentBottom="true"
             android:padding="20dp"
             android:layout_width="wrap_content"
