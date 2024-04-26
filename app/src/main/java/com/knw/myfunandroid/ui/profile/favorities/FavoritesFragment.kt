@@ -152,6 +152,12 @@ class FavoritesFragment : Fragment() {
                 collectEmptyTip.visibility = View.GONE
                 viewModel.collectArticleList.addAll(collectArticles)
                 Log.d("collectArticleList", viewModel.collectArticleList.toString())
+                collectArticleAdapter.notifyDataSetChanged()
+                isLoading=false
+                if(!viewModel.collectArticleList.isEmpty()&&collectArticles.isEmpty())
+                {
+                    Toast.makeText(activity, "已获取所有文章", Toast.LENGTH_SHORT).show()
+                }
                 if (viewModel.collectArticleList.isEmpty() && collectArticles.isEmpty()) {
                     Log.d("collectArticleList", "无收藏")
                     collectEmptyTip.visibility = View.VISIBLE
@@ -159,10 +165,10 @@ class FavoritesFragment : Fragment() {
                     collectLoginTip.visibility = View.GONE
 
                 }
-                collectArticleAdapter.notifyDataSetChanged()
-                isLoading=false
 
-            } else {
+
+            }
+            else {
                 collectLoginTip.visibility = View.VISIBLE
                 collectArticleRecyclerView.visibility = View.GONE
                 collectEmptyTip.visibility = View.GONE

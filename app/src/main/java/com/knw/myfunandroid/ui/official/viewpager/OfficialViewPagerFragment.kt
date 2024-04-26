@@ -98,11 +98,18 @@ class OfficialViewPagerFragment : Fragment() {
 
         viewModel.officialArticleLiveData.observe(viewLifecycleOwner, Observer { result ->
             val officialArticles = result.getOrNull()
-            if (officialArticles != null) {
+            if (officialArticles != null&&!officialArticles.isEmpty()) {
                 viewModel.officialArticleList.addAll(officialArticles)
                 officialArticleAdapter.notifyDataSetChanged()
                 isLoading = false
-            } else {
+            }  else if(officialArticles != null&&officialArticles.isEmpty())
+            {
+
+                Toast.makeText(activity, "已获取所有文章", Toast.LENGTH_SHORT).show()
+                isLoading=false
+
+            }
+            else {
                 Toast.makeText(activity, "未能查询到任何文章", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }

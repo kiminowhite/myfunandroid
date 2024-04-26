@@ -185,11 +185,18 @@ class HomeFragment : Fragment() {
 
         articleViewModel.articleLiveData.observe(viewLifecycleOwner, Observer { result ->
             val articles = result.getOrNull()
-            if (articles != null) {
+            if (articles != null&&!articles.isEmpty()) {
                 articleViewModel.articleList.addAll(articles)
                 articleAdapter.notifyDataSetChanged()
                 isLoading=false
-            } else {
+            }
+            else if(articles != null&&articles.isEmpty())
+            {
+
+                Toast.makeText(activity, "已获取所有文章", Toast.LENGTH_SHORT).show()
+                isLoading=false
+
+            }else {
                 Toast.makeText(activity, "未能查询到任何文章", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }

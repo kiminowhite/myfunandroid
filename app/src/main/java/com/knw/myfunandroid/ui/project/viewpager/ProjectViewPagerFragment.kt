@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -22,6 +23,7 @@ class ProjectViewPagerFragment : Fragment() {
 
     private lateinit var projectArticleAdapter: ProjectArticleAdapter
     private lateinit var projectArticleRecyclerView: RecyclerView
+
 
     private var isLoading = false
 
@@ -101,6 +103,7 @@ class ProjectViewPagerFragment : Fragment() {
 
     private fun initView(view: View) {
         projectArticleRecyclerView = view.findViewById(R.id.project_recycleview)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -127,12 +130,19 @@ class ProjectViewPagerFragment : Fragment() {
 
         viewModel.projectArticleLiveData.observe(viewLifecycleOwner, Observer { result ->
             val projectArticles = result.getOrNull()
-            if (projectArticles != null) {
+            if (projectArticles != null&&!projectArticles.isEmpty()) {
                 viewModel.projectArticleList.addAll(projectArticles)
                 Log.d("testproject", viewModel.projectArticleList.toString())
                 projectArticleAdapter.notifyDataSetChanged()
                 isLoading=false
-            } else {
+            }
+            else if(projectArticles != null&&projectArticles.isEmpty())
+            {
+
+                Toast.makeText(activity, "已获取所有文章", Toast.LENGTH_SHORT).show()
+                isLoading=false
+
+            } else{
                 Toast.makeText(activity, "未能查询到任何文章", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }

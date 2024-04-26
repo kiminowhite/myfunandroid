@@ -131,12 +131,19 @@ class SystemArticleFragment : Fragment() {
         }
         viewModel.articleByCidLiveData.observe(viewLifecycleOwner, Observer { result ->
             val systemArticles = result.getOrNull()
-            if (systemArticles != null) {
+            if (systemArticles != null&&!systemArticles.isEmpty()) {
                 viewModel.artcileByCidList.addAll(systemArticles)
 
                 systemArticleAdapter.notifyDataSetChanged()
                 isLoading=false
-            } else {
+            }else if(systemArticles != null&&systemArticles.isEmpty())
+            {
+
+                Toast.makeText(activity, "已获取所有文章", Toast.LENGTH_SHORT).show()
+                isLoading=false
+
+            }
+            else {
                 Toast.makeText(activity, "未能查询到任何文章", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
