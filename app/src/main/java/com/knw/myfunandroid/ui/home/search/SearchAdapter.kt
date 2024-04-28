@@ -11,7 +11,7 @@ import com.knw.myfunandroid.R
 
 class SearchAdapter(private val fragment: Fragment, private val searchList: List<String>) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
-      private var listener :onItemClickListener ?= null
+      private var listener :onItemClickListener ?= null //监听器
 
     fun setOnItemClickListener(listener: onItemClickListener) {
         this.listener = listener
