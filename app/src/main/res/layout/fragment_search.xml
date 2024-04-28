@@ -29,7 +29,7 @@
            android:layout_marginBottom="5dp"
            android:textColorHint="@color/text_grey"
            android:hint="搜索"
-
+           android:maxLines="1"
            android:layout_height="wrap_content"></EditText>
        <ImageView
            android:id="@+id/search_bar_clear"

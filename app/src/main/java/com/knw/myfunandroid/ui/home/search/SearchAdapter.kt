@@ -9,8 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.knw.myfunandroid.R
 
 
-class SearchAdpter(private val fragment: Fragment, private val searchList: List<String>) :
-    RecyclerView.Adapter<SearchAdpter.ViewHolder>() {
+class SearchAdapter(private val fragment: Fragment, private val searchList: List<String>) :
+    RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+      private var listener :onItemClickListener ?= null
+
+    fun setOnItemClickListener(listener: onItemClickListener) {
+        this.listener = listener
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -18,18 +23,26 @@ class SearchAdpter(private val fragment: Fragment, private val searchList: List<
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdpter.ViewHolder {
-       val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val searchItem = searchList[position]
         holder.title.text = searchItem
+        holder.itemView.setOnClickListener({
+            listener?.onclickItem(searchItem)
+        })
     }
 
 
     override fun getItemCount(): Int = searchList.size
+
+    interface onItemClickListener
+    {
+        fun onclickItem(query:String)
+    }
 
 
 }

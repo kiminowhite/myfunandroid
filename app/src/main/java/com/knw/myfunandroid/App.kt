@@ -3,12 +3,23 @@ package com.knw.myfunandroid
 import android.app.Application
 import android.content.Context
 import com.knw.myfunandroid.logic.model.User
+import java.util.ArrayList
+
 
 class App : Application() {
     companion object {
         private var _isLogin: Boolean = false
         private var _loginUser: User? = null
         private var _cookies: MutableList<String>? = null
+        private var  _searchHistoryList : ArrayList<String> = ArrayList<String>()
+
+        var searchHistoryList :ArrayList<String>?
+            get() {
+                return _searchHistoryList
+            }set(value)
+        {
+                _searchHistoryList = value!!
+            }
 
         var cookies: MutableList<String>?
             get() {
