@@ -94,6 +94,13 @@ class SearchFragment : Fragment() ,SearchAdapter.onItemClickListener{
             searchHistoryList.add(0,query)
             recyclerSearchHistory.adapter?.notifyDataSetChanged()
 
+        }else
+        {
+            val index = searchHistoryList.indexOf(query)
+            searchHistoryList.removeAt(index)
+            searchHistoryList.add(0,query)
+            recyclerSearchHistory.adapter?.notifyDataSetChanged()
+
         }
         //搜索相应文章
 
