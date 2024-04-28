@@ -20,7 +20,7 @@
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/fanhui">
+            android:src="@drawable/img_xiangzuo_chang">
 
         </ImageView>
         <ImageView
@@ -52,7 +52,7 @@
             android:padding="16dp">
 
             <EditText
-                android:drawableLeft="@mipmap/yonghuming"
+                android:drawableLeft="@drawable/img_yonghuming"
                 android:drawablePadding="10dp"
                 android:singleLine="true"
                 android:id="@+id/edit_sign_username"
@@ -62,7 +62,7 @@
 
             <EditText
                 android:layout_below="@+id/edit_sign_username"
-                android:drawableLeft="@mipmap/mima"
+                android:drawableLeft="@drawable/img_mima"
                 android:drawablePadding="10dp"
                 android:singleLine="true"
                 android:id="@+id/edit_sign_password"
@@ -73,7 +73,7 @@
                 android:inputType="textPassword" />
             <EditText
                 android:layout_below="@+id/edit_sign_password"
-                android:drawableLeft="@mipmap/mima"
+                android:drawableLeft="@drawable/img_mima"
                 android:drawablePadding="10dp"
                 android:singleLine="true"
                 android:id="@+id/edit_sign_password_confirm"
@@ -88,7 +88,7 @@
                 android:id="@+id/sign_hide_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/mimayincang_normal"></ImageView>
+                android:src="@drawable/img_mimayincang_normal"></ImageView>
 
             <ImageView
                 android:layout_marginLeft="320dp"
@@ -96,7 +96,7 @@
                 android:id="@+id/sign_hide_password_confirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/mimayincang_normal"></ImageView>
+                android:src="@drawable/img_mimayincang_normal"></ImageView>
 
             <TextView
                 android:background="@drawable/selector_login_btn"

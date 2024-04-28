@@ -6,7 +6,7 @@
     android:paddingTop="6dp">
     <ImageView
         android:id="@+id/main_page_botton_item_icon"
-        android:src="@mipmap/shouye"
+        android:src="@drawable/img_shouye_normal"
 
         android:layout_width="25dp"
         android:layout_height="25dp"

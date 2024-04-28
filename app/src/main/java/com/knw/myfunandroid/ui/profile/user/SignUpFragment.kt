@@ -110,11 +110,11 @@ public class SignUpFragment : Fragment() {
         imgSignHidePassword.setOnClickListener({
             if (passwordIsHiden) {
                 passwordIsHiden = false
-                imgSignHidePassword.setImageResource(R.mipmap.mimayincang_press)
+                imgSignHidePassword.setImageResource(R.drawable.img_mimayincang_press)
                 editSignPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             } else {
                 passwordIsHiden = true
-                imgSignHidePassword.setImageResource(R.mipmap.mimayincang_normal)
+                imgSignHidePassword.setImageResource(R.drawable.img_mimayincang_normal)
                 editSignPassword.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
@@ -127,11 +127,11 @@ public class SignUpFragment : Fragment() {
 
             if (passwordIsHidenConfirm) {
                 passwordIsHidenConfirm = false
-                imgSignHidePasswordConfirm.setImageResource(R.mipmap.mimayincang_press)
+                imgSignHidePasswordConfirm.setImageResource(R.drawable.img_mimayincang_press)
                 editSignPasswordConfim.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             } else {
                 passwordIsHidenConfirm = true
-                imgSignHidePasswordConfirm.setImageResource(R.mipmap.mimayincang_normal)
+                imgSignHidePasswordConfirm.setImageResource(R.drawable.img_mimayincang_normal)
                 editSignPasswordConfim.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }

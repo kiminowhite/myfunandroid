@@ -50,11 +50,11 @@ class LoginFragment : Fragment() {
         imgPasswordHiden.setOnClickListener {
             if (passwordIsHiden) {
                 passwordIsHiden = false
-                imgPasswordHiden.setImageResource(R.mipmap.mimayincang_press)
+                imgPasswordHiden.setImageResource(R.drawable.img_mimayincang_press)
                 editPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             } else {
                 passwordIsHiden = true
-                imgPasswordHiden.setImageResource(R.mipmap.mimayincang_normal)
+                imgPasswordHiden.setImageResource(R.drawable.img_mimayincang_normal)
                 editPassword.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }

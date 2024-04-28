@@ -55,14 +55,14 @@
         </TextView>
         <ImageView
             android:id="@+id/top_mark"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="10dp"
+            android:paddingBottom="12dp"
+            android:layout_marginTop="12dp"
             android:layout_marginLeft="15dp"
             android:layout_below="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:src="@mipmap/zhiding"></ImageView>
+            android:visibility="visible"
+            android:src="@drawable/img_zhiding"></ImageView>
         <ImageView
             android:id="@+id/zan"
             android:layout_marginTop="10dp"
