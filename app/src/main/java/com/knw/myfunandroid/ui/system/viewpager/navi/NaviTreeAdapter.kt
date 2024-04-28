@@ -5,8 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
 import com.knw.myfunandroid.R
 import com.knw.myfunandroid.logic.model.NaviTreeItem
 

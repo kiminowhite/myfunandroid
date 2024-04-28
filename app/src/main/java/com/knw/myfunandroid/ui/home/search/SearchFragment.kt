@@ -8,8 +8,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.google.android.flexbox.FlexboxLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.knw.myfunandroid.R
+import java.util.Collections
+
 
 class SearchFragment : Fragment() {
 
@@ -21,6 +24,7 @@ class SearchFragment : Fragment() {
     private lateinit var textSearchHistoryClear: TextView
     private lateinit var recyclerSearchHistory: RecyclerView
 
+    private val searchHotList= listOf("面试","Studio3","动画","自定义View","性能优化 速度","gradle","Camera 相机","代码混淆 安全","逆向 加固")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,6 +37,14 @@ class SearchFragment : Fragment() {
         return view
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        recyclerSearchHot.layoutManager= FlexboxLayoutManager(requireContext())
+        recyclerSearchHot.adapter=SearchAdpter(this,searchHotList)
+
+
+    }
+
     private fun initListener() {
         imgSearchBarBack.setOnClickListener({
             requireActivity().supportFragmentManager.popBackStack()
@@ -40,6 +52,10 @@ class SearchFragment : Fragment() {
         imgSearchBarClear.setOnClickListener({
             editSearchBar.text.clear()
 
+        })
+        textSearchHotReload.setOnClickListener({
+            Collections.shuffle(searchHotList);
+            recyclerSearchHot.adapter?.notifyDataSetChanged()
         })
     }
 
